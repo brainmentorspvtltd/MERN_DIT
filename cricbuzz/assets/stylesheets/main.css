@@ -1,0 +1,130 @@
+/* Global Settings */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #E3E6E3;
+    padding-top: 10px;
+}
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Helper Classes */
+.clear:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+#container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/* Common Settings */
+#header {
+    background-color: #009270;
+}
+#header .logo {
+    width: 12%;
+}
+#header .logo a {
+    display: block;
+    padding: 5px 5px 5px 15px;
+}
+
+#header .cricbuzz-plus {
+    width: 12%;
+    background-color: #000;
+}
+#header .cricbuzz-plus a {
+    display: block;
+    padding: 16px 10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+#header .search {
+    width: 4%;
+}
+
+#header .login {
+    width: 4%;
+}
+
+#main-nav {
+    width: 68%;
+}
+
+#main-nav > ul > li {
+    font-size: 14px;
+    display: inline-block;
+    /* width: 10%; */
+    text-align: center;
+    position: relative;
+}
+#main-nav > ul > li:hover {
+    background-color: #028062;
+}
+#main-nav > ul > li > a {
+    display: block;
+    color: #fff;
+    padding: 16px 10px;
+}
+
+#main-nav ul li.dropdown-menu::after {
+    content: "";
+    position: absolute;
+    border: 5px solid #fff;
+    border-color: white transparent transparent;
+    right: -5px;
+    top: 23px;
+}
+
+#main-nav .dropdown{
+    position: absolute;
+    text-align: left;
+    background-color: #fff;
+    left: 0px;
+    width: 300%;
+    display: none;
+}
+#main-nav .dropdown ul li {
+    margin-bottom: 2px;
+}
+#main-nav .dropdown ul li a {
+    color: #000;
+    display: block;
+    padding: 10px 5px;
+}
+#main-nav .dropdown ul li:hover {
+    background-color: #ECEBEB;
+}
+
+#main-nav ul li:hover .dropdown {
+    display: block;
+}
+
+#footer {
+
+}
+
+/* Specific Settings */

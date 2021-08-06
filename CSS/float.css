@@ -1,0 +1,34 @@
+/* * {
+    margin: 0px;
+} */
+
+.row {
+    /* background-color: lightgoldenrodyellow; */
+}
+/* Pseudo Element */
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.col-1 {
+    background-color: lightblue;
+    width: 40%;
+    float: left;
+}
+
+.col-2 {
+    background-color: lightgray;
+    width: 40%;
+    float: right;
+}
+
+.blank {
+    clear: both;
+}
+
+.div_1 {
+    background-color: lightcoral;
+}
+

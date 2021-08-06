@@ -1,0 +1,50 @@
+/* Global Settings */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Helper Classes */
+.clear:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* Common Settings */
+#header {
+
+}
+
+#banner {
+
+}
+
+#main-nav {
+
+}
+
+#footer {
+
+}
+
+/* Specific Settings */
