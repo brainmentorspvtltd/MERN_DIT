@@ -1,0 +1,386 @@
+var a;// variable declare
+undefined
+typeof a;
+"undefined"
+a;
+undefined
+a=100;
+100
+typeof a;
+"number"
+a=1;
+1
+typeof a;
+"number"
+a=454545654654654;
+454545654654654
+typeof a;
+"number"
+a=90.20;
+90.2
+typeof a;
+"number"
+a=545.3232323232323
+545.3232323232323
+typeof a;
+"number"
+a=100/0;
+Infinity
+typeof a;
+"number"
+a=100;
+100
+var b = "Amit";
+undefined
+typeof a;
+"number"
+typeof b;
+"string"
+a + b
+"100Amit"
+var c = a - b;
+undefined
+c;
+NaN
+typeof c;
+"number"
+'Ur Balance is '+c;
+"Ur Balance is NaN"
+isNaN(c);
+true
+c;
+NaN
+isNaN(c)?0:c;
+0
+'Ur Balance is '+(isNaN(c)?0:c);
+"Ur Balance is 0"
+var c= 100/0;
+undefined
+c;
+Infinity
+isFinite(c)
+false
+isFinite(c)?c:0
+0
+var a = 100;
+undefined
+var b = "200";
+undefined
+a + b;
+"100200"
+a + parseInt(b);
+300
+b = "200.90";
+"200.90"
+a + parseFloat(b);
+300.9
+window;
+Window {window: Window, self: Window, document: document, name: "", location: Location, …}
+typeof window;
+"object"
+window instanceof Window;
+true
+typeof Window;
+"function"
+window.isNaN(c);
+false
+window.parseInt("9999");
+9999
+window.open('https://www.brain-mentors.com');
+Window {window: Window, self: Window, document: document, name: "", location: Location, …}
+var x = "Amit";
+undefined
+typeof x;
+"string"
+x = 'Amit';
+"Amit"
+typeof x;
+"string"
+x= 'A';
+"A"
+typeof x;
+"string"
+x= `gjdhgfdjkghfjkhgjkfdghkjdfhgkfhgkhfjdkj
+ghfdkjgjkfdhgkjhfdghkdf
+ghdfkjhgjkfdhgkjhfdjk
+ghdfkjgh`;
+"gjdhgfdjkghfjkhgjkfdghkjdfhgkfhgkhfjdkj\nghfdkjgjkfdhgkjhfdghkdf\nghdfkjhgjkfdhgkjhfdjk\nghdfkjgh"
+typeof x;
+"string"
+x;
+"gjdhgfdjkghfjkhgjkfdghkjdfhgkfhgkhfjdkj\nghfdkjgjkfdhgkjhfdghkdf\nghdfkjhgjkfdhgkjhfdjk\nghdfkjgh"
+a = 100;
+100
+b = 200;
+200
+c = a + b;
+300
+"A is "+a+" B is "+b+" c is "+c;
+"A is 100 B is 200 c is 300"
+`A is ${a} B is ${b} c is ${c}`;
+"A is 100 B is 200 c is 300"
+var c = true;
+undefined
+typeof c;
+"boolean"
+c = false;
+false
+typeof c;
+"boolean"
+true + true;
+2
+true - false
+1
+100 + true;
+101
+100 + "100"
+"100100"
+100 - "100"
+0
+100 * "10"
+1000
+100 / "10"
+10
+var a = Number.MAX_SAFE_INTEGER;
+undefined
+a;
+9007199254740991
+++a;
+9007199254740992
+++a;
+9007199254740992
+++a;
+9007199254740992
+++a;
+9007199254740992
+++a;
+9007199254740992
+var r = 9007199254740992 + 534423432423423
+undefined
+typeof r;
+"number"
+r;
+9541622687164416
+a= Number.MAX_SAFE_INTEGER;
+9007199254740991
+++a;
+9007199254740992
+++a;
+9007199254740992
+a= 9007199254740992n;
+9007199254740992n
+typeof a;
+"bigint"
+a + 8654654435534534553n
+8663661634789275545n
+c = a + 8654654435534534553n
+8663661634789275545n
+typeof c;
+"bigint"
+c;
+8663661634789275545n
+var f = BigInt("53453453534534535432534534");
+undefined
+typeof f;
+"bigint"
+f;
+53453453534534535432534534n
+100n + 100;
+VM2710:1 Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
+    at <anonymous>:1:6
+(anonymous) @ VM2710:1
+100n + 100n
+200n
+var arr = [10,20,30,40];
+undefined
+typeof arr;
+"object"
+arr instanceof Array;
+true
+typeof Array;
+"function"
+arr[0];
+10
+arr[1];
+20
+arr.length;
+4
+arr.push(99999);
+5
+arr;
+(5) [10, 20, 30, 40, 99999]
+arr.pop();
+99999
+arr;
+(4) [10, 20, 30, 40]
+arr = null;
+null
+typeof arr;
+"object"
+arr.length;
+VM3165:1 Uncaught TypeError: Cannot read property 'length' of null
+    at <anonymous>:1:5
+(anonymous) @ VM3165:1
+var t1 ;
+undefined
+typeof t1;
+"undefined"
+var t2 = null;
+undefined
+typeof t2;
+"object"
+1000 + t1;
+NaN
+1000 + undefined
+NaN
+1000 + null
+1000
+undefined == null
+true
+undefined === null;
+false
+var price = 10000;
+undefined
+price;
+10000
+var price = 10000.20;
+undefined
+price;
+10000.2
+price.toLocaleString('hi-IN');
+"10,000.2"
+price.toLocaleString('fr-FR');
+"10 000,2"
+price;
+10000.2
+var formattedPrice = price.toLocaleString('fr-FR');
+undefined
+formattedPrice
+"10 000,2"
+price;
+10000.2
+var name = "Amit";
+undefined
+name.toUpperCase();
+"AMIT"
+name;
+"Amit"
+var t = name.toUpperCase();
+undefined
+t;
+"AMIT"
+name;
+"Amit"
+var emp = {id:1001, name:'Amit'};
+undefined
+typeof emp;
+"object"
+emp instanceof Object;
+true
+typeof Object;
+"function"
+var arr = [10,20];
+undefined
+typeof arr;
+"object"
+arr instanceof Array;
+true
+arr instanceof Object;
+true
+emp;
+{id: 1001, name: "Amit"}
+emp.id;
+1001
+emp.name;
+"Amit"
+var f = emp;
+undefined
+f;
+{id: 1001, name: "Amit"}
+f === emp;
+true
+f.id = 100000;
+100000
+emp;
+{id: 100000, name: "Amit"}
+var arr= [10,90,20,30,40,50];
+undefined
+arr.sort();
+(6) [10, 20, 30, 40, 50, 90]
+arr;
+(6) [10, 20, 30, 40, 50, 90]
+var arr= [10,90,20,30,40,50];
+undefined
+var vv = [...arr];
+undefined
+vv;
+(6) [10, 90, 20, 30, 40, 50]
+arr;
+(6) [10, 90, 20, 30, 40, 50]
+vv === arr;
+false
+vv[0] =324343;
+324343
+vv;
+(6) [324343, 90, 20, 30, 40, 50]
+arr;
+(6) [10, 90, 20, 30, 40, 50]
+emp;
+{id: 100000, name: "Amit"}
+var y = {...emp};
+undefined
+y;
+{id: 100000, name: "Amit"}
+y === emp;
+false
+y.id = 7777;
+7777
+emp;
+{id: 100000, name: "Amit"}
+y;
+{id: 7777, name: "Amit"}
+var t = 1000;
+undefined
+typeof t;
+"number"
+t.toString();
+"1000"
+var n = "Amit";
+undefined
+typeof n;
+"string"
+n.toUpperCase();
+"AMIT"
+n.toLowerCase();
+"amit"
+n.charAt(0);
+"A"
+var e = 1000;
+undefined
+typeof e;
+"number"
+var e= new Number(1000);
+undefined
+typeof e;
+"object"
+typeof Number;
+"function"
+var g = 1000;
+undefined
+typeof g;
+"number"
+var f = new String("Hello");
+undefined
+typeof String;
+"function"
+typeof f;
+"object"
+var bb = "Hello";
+
+undefined
+typeof bb;
+"string"
+f;
+String {"Hello"}0: "H"1: "e"2: "l"3: "l"4: "o"length: 5__proto__: Stringanchor: ƒ anchor()big: ƒ big()blink: ƒ blink()bold: ƒ bold()charAt: ƒ charAt()charCodeAt: ƒ charCodeAt()codePointAt: ƒ codePointAt()concat: ƒ concat()constructor: ƒ String()endsWith: ƒ endsWith()fixed: ƒ fixed()fontcolor: ƒ fontcolor()fontsize: ƒ fontsize()includes: ƒ includes()indexOf: ƒ indexOf()italics: ƒ italics()lastIndexOf: ƒ lastIndexOf()length: 0link: ƒ link()localeCompare: ƒ localeCompare()match: ƒ match()matchAll: ƒ matchAll()normalize: ƒ normalize()padEnd: ƒ padEnd()padStart: ƒ padStart()repeat: ƒ repeat()replace: ƒ replace()replaceAll: ƒ replaceAll()search: ƒ search()slice: ƒ slice()small: ƒ small()split: ƒ split()startsWith: ƒ startsWith()strike: ƒ strike()sub: ƒ sub()substr: ƒ substr()substring: ƒ substring()sup: ƒ sup()toLocaleLowerCase: ƒ toLocaleLowerCase()toLocaleUpperCase: ƒ toLocaleUpperCase()toLowerCase: ƒ toLowerCase()toString: ƒ toString()toUpperCase: ƒ toUpperCase()trim: ƒ trim()trimEnd: ƒ trimEnd()trimLeft: ƒ trimStart()trimRight: ƒ trimEnd()trimStart: ƒ trimStart()valueOf: ƒ valueOf()Symbol(Symbol.iterator): ƒ [Symbol.iterator]()__proto__: Object[[PrimitiveValue]]: ""[[PrimitiveValue]]: "Hello"
+bb;
+"Hello"
