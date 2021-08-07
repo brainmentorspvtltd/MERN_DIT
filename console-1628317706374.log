@@ -1,0 +1,114 @@
+function show(){
+console.log("Hello Show ");
+}
+undefined
+show();
+VM84:2 Hello Show 
+undefined
+function show(){
+console.log("Hello Show ");
+return 1000;
+}
+undefined
+show();
+VM129:2 Hello Show 
+1000
+typeof show;
+"function"
+var f = show;
+undefined
+f;
+ƒ show(){
+console.log("Hello Show ");
+return 1000;
+}
+typeof f;
+"function"
+f=== show;
+true
+f();
+VM129:2 Hello Show 
+1000
+show();
+VM129:2 Hello Show 
+1000
+show(1,2,3,4);
+VM129:2 Hello Show 
+1000
+show();
+VM129:2 Hello Show 
+1000
+show(1,2);
+VM129:2 Hello Show 
+1000
+show([10,20],"Hello", 1000);
+VM129:2 Hello Show 
+1000
+function add(){
+console.log("I am Add ");
+}
+undefined
+add();
+VM517:2 I am Add 
+undefined
+add(10,20);
+VM517:2 I am Add 
+undefined
+add(1,"2",3);
+VM517:2 I am Add 
+undefined
+add(1,"2",3,[4,5]);
+VM517:2 I am Add 
+undefined
+add(1,"2",3,[4,"5"]);
+VM517:2 I am Add 
+undefined
+console.dir(add);
+VM684:1 ƒ add()arguments: nullcaller: nulllength: 0name: "add"prototype: {constructor: ƒ}__proto__: ƒ ()[[FunctionLocation]]: VM517:1[[Scopes]]: Scopes[1]
+undefined
+add;
+ƒ add(){
+console.log("I am Add ");
+}
+function add(){
+console.log("I am Add ", arguments.length);
+}
+undefined
+add();
+VM769:2 I am Add  0
+undefined
+add(1,2);
+VM769:2 I am Add  2
+undefined
+add(1,2,[3,4])
+VM769:2 I am Add  3
+undefined
+add(1,2,[3,4],"four")
+VM769:2 I am Add  4
+undefined
+function add(){
+var total = 0;
+for(var i =0; i<arguments.length; i++){
+total += arguments[i];
+}
+return total;
+}
+undefined
+add();
+0
+add(1,2,3);
+6
+add(1,2,3,4,5,6,7);
+28
+add(1,2,3,4,"5",6,7);
+"10567"
+function add(){
+var total = 0;
+for(var i =0; i<arguments.length; i++){
+total += parseInt(arguments[i]);
+}
+return total;
+}
+undefined
+add(1,2,3,4,"5",6,7);
+28
