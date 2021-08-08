@@ -1,0 +1,91 @@
+function add(){
+console.log("I am Add ");
+}
+undefined
+window.add();
+VM74:2 I am Add 
+undefined
+add();
+VM74:2 I am Add 
+undefined
+function add(){
+console.log("order add ");
+}
+undefined
+window.add();
+VM205:2 order add 
+undefined
+function Math(){
+var add = function(x,y){
+    return x + y;
+}
+var sub = function(x,y){
+    return x - y;
+}
+return [add, sub];
+}
+undefined
+var a = Math();
+undefined
+a;
+(2) [ƒ, ƒ]
+a[0];
+ƒ (x,y){
+    return x + y;
+}
+a[1];
+ƒ (x,y){
+    return x - y;
+}
+a[0] (10,20);
+30
+a[1] (10,20);
+-10
+function Math(){
+var add = function(x,y){
+    return x + y;
+}
+var sub = function(x,y){
+    return x - y;
+}
+return {add, sub};
+}
+undefined
+var obj = Math();
+undefined
+obj;
+{add: ƒ, sub: ƒ}
+obj.add(10,20);
+30
+obj.add(-10,20);
+10
+obj.sub(10,20);
+-10
+function Math(){
+var add = function(x,y){
+    return x + y;
+}
+var sub = function(x,y){
+    return x - y;
+}
+return [add, sub];
+}
+undefined
+var e = Math();
+undefined
+e;
+(2) [ƒ, ƒ]0: ƒ (x,y)arguments: nullcaller: nulllength: 2name: "add"prototype: {constructor: ƒ}__proto__: ƒ ()[[FunctionLocation]]: VM714:2[[Scopes]]: Scopes[1]1: ƒ (x,y)length: 2__proto__: Array(0)
+function Math(){
+var add = function add(x,y){
+    return x + y;
+}
+var sub = function subtract(x,y){
+    return x - y;
+}
+return [add, sub];
+}
+undefined
+var e = Math();
+undefined
+e;
+(2) [ƒ, ƒ]0: ƒ add(x,y)1: ƒ subtract(x,y)length: 2__proto__: Array(0)
