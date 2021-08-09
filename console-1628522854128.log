@@ -1,0 +1,93 @@
+function Math(){
+const add = (a,b)=>a+b;
+const sub = (a,b)=>a-b;
+return {add, sub};
+}
+undefined
+const obj = Math();
+undefined
+obj;
+{add: ƒ, sub: ƒ}
+obj.add(10,20);
+30
+obj.sub(10,20);
+-10
+obj["add"](10,30);
+40
+var fn = "add";
+undefined
+obj.fn
+undefined
+obj.fn(10,20);
+VM457:1 Uncaught TypeError: obj.fn is not a function
+    at <anonymous>:1:5
+(anonymous) @ VM457:1
+obj[fn](10,20);
+30
+var obj = {1:99, 2:44, 3:200};
+VM543:1 Uncaught SyntaxError: Identifier 'obj' has already been declared
+    at <anonymous>:1:1
+(anonymous) @ VM543:1
+var obj2 = {1:99, 2:44, 3:200};
+undefined
+obj2.1;
+VM585:1 Uncaught SyntaxError: Unexpected number
+obj2[1];
+99
+obj2[3];
+200
+obj3.a b = 888;
+VM685:1 Uncaught SyntaxError: Unexpected identifier
+obj3["a b"]=888;
+VM727:1 Uncaught ReferenceError: obj3 is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM727:1
+obj2["a b"]=888;
+888
+obj2."a b"=888;
+VM761:1 Uncaught SyntaxError: Unexpected string
+obj2."a b"
+VM808:1 Uncaught SyntaxError: Unexpected string
+obj2["a b"]
+888
+function countDown(){
+var count = 0;
+return ++count;
+}
+undefined
+countDown();
+1
+countDown();
+1
+countDown();
+1
+var count = 0;
+function countDown(){
+
+return ++count;
+}
+undefined
+countDown();
+1
+countDown();
+2
+countDown();
+3
+countDown();
+4
+window.count;
+4
+window.count = 10000;
+10000
+countDown();
+10001
+countDown();
+10002
+countDown();
+10003
+window.count = "Amit";
+"Amit"
+countDown();
+NaN
+countDown();
+NaN

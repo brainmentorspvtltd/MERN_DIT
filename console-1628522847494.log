@@ -1,0 +1,34 @@
+function init(){
+var count = 0;
+return function (){
+
+return ++count;
+}
+}
+undefined
+var x = init();
+undefined
+x;
+ƒ (){
+
+return ++count;
+}
+x();
+1
+x();
+2
+x();
+3
+x();
+4
+window.count;
+undefined
+count;
+VM207:1 Uncaught ReferenceError: count is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM207:1
+console.dir(x);
+VM270:1 ƒ anonymous()arguments: nullcaller: nulllength: 0name: ""prototype: {constructor: ƒ}__proto__: ƒ ()[[FunctionLocation]]: VM48:3[[Scopes]]: Scopes[2]0: Closure (init) {count: 4}1: Global {window: Window, self: Window, document: document, name: "", location: Location, …}
+undefined
+typeof x;
+"function"

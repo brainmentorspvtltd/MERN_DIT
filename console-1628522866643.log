@@ -1,0 +1,310 @@
+ var arr = [10,20,30,40,50];
+undefined
+typeof arr;
+"object"
+arr instanceof Array;
+true
+typeof Array;
+"function"
+arr.reduce((acc, currentElement)=>acc+currentElement , acc = 0);
+150
+arr.reduce((acc, currentElement)=>{
+if(currentElement>20){
+acc+= currentElement;
+}
+return acc;
+} , acc = 0);
+120
+arr.reduce((acc, currentElement)=>{
+if(currentElement>20){
+acc++;
+}
+return acc;
+} , acc = 0);
+3
+arr.reduce((acc, currentElement)=>{
+if(currentElement>20){
+acc.push(currentElement);
+}
+return acc;
+} , acc = []);
+(3) [30, 40, 50]
+arr;
+(5) [10, 20, 30, 40, 50]
+var arr = [10,90,10,100,88,200,55];
+undefined
+arr.reduce((max, currentElement)=>{
+if(currentElement>max){
+max = currentElement;
+}
+return max
+}, max = 0);
+200
+arr;
+(7) [10, 90, 10, 100, 88, 200, 55]
+arr.push(888);
+8
+arr;
+(8) [10, 90, 10, 100, 88, 200, 55, 888]
+arr.pop();
+888
+arr;
+(7) [10, 90, 10, 100, 88, 200, 55]
+arr.unshift(111);
+8
+arr;
+(8) [111, 10, 90, 10, 100, 88, 200, 55]
+arr.shift();
+111
+arr;
+(7) [10, 90, 10, 100, 88, 200, 55]
+arr.splice(1);
+(6) [90, 10, 100, 88, 200, 55]
+arr;
+[10]
+var arr = [10,90,10,100,88,200,55];
+undefined
+arr = [];
+[]
+arr;
+[]
+var arr = [10,90,10,100,88,200,55];
+undefined
+arr.length=0;
+0
+arr;
+[]
+var arr = [10,90,10,100,88,200,55];
+undefined
+arr.length= arr.length-3;
+4
+arr;
+(4) [10, 90, 10, 100]
+var arr = [10,90,10,100,88,200,55];
+undefined
+arr.splice(2,1);
+[10]
+arr;
+(6) [10, 90, 100, 88, 200, 55]
+arr.splice(2,3);
+(3) [100, 88, 200]
+arr;
+(3) [10, 90, 55]
+var arr = [10,90,10,100,88,200,55];
+undefined
+arr.splice(2,1,88888);
+[10]
+arr;
+(7) [10, 90, 88888, 100, 88, 200, 55]
+arr.splice(2,0,5555);
+[]
+arr;
+(8) [10, 90, 5555, 88888, 100, 88, 200, 55]
+arr.insert;
+undefined
+arr instanceof Array;
+true
+Array;
+ƒ Array() { [native code] }
+typeof Array;
+"function"
+console.dir(Array);
+VM1797:1 ƒ Array()arguments: (...)caller: (...)from: ƒ from()isArray: ƒ isArray()length: 1name: "Array"of: ƒ of()prototype: Array(0)concat: ƒ concat()constructor: ƒ Array()copyWithin: ƒ copyWithin()entries: ƒ entries()every: ƒ every()fill: ƒ fill()filter: ƒ filter()find: ƒ find()findIndex: ƒ findIndex()flat: ƒ flat()flatMap: ƒ flatMap()forEach: ƒ forEach()includes: ƒ includes()indexOf: ƒ indexOf()join: ƒ join()keys: ƒ keys()lastIndexOf: ƒ lastIndexOf()length: 0map: ƒ map()pop: ƒ pop()push: ƒ push()reduce: ƒ reduce()reduceRight: ƒ reduceRight()reverse: ƒ reverse()shift: ƒ shift()slice: ƒ slice()some: ƒ some()sort: ƒ sort()splice: ƒ splice()toLocaleString: ƒ toLocaleString()toString: ƒ toString()unshift: ƒ unshift()values: ƒ values()Symbol(Symbol.iterator): ƒ values()Symbol(Symbol.unscopables): {copyWithin: true, entries: true, fill: true, find: true, findIndex: true, …}__proto__: ObjectSymbol(Symbol.species): (...)get Symbol(Symbol.species): ƒ [Symbol.species]()__proto__: ƒ ()[[Scopes]]: Scopes[0]
+undefined
+Array.prototype.insert = function(index, value){
+    this.splice(index , 0 , value);
+    return this.length;
+}
+ƒ (index, value){
+    this.splice(index , 0 , value);
+    return this.length;
+}
+arr;
+(8) [10, 90, 5555, 88888, 100, 88, 200, 55]
+arr.push(444);
+9
+arr;
+(9) [10, 90, 5555, 88888, 100, 88, 200, 55, 444]
+arr.unshift(111);
+10
+arr;
+(10) [111, 10, 90, 5555, 88888, 100, 88, 200, 55, 444]
+arr.insert(3,7654);
+11
+arr;
+(11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+arr.forEach
+ƒ forEach() { [native code] }
+arr.forEach(element=>console.log(element));
+VM2361:1 111
+VM2361:1 10
+VM2361:1 90
+VM2361:1 7654
+VM2361:1 5555
+VM2361:1 88888
+VM2361:1 100
+VM2361:1 88
+VM2361:1 200
+VM2361:1 55
+VM2361:1 444
+undefined
+arr.forEach((element,index)=>console.log(element, index));
+VM2400:1 111 0
+VM2400:1 10 1
+VM2400:1 90 2
+VM2400:1 7654 3
+VM2400:1 5555 4
+VM2400:1 88888 5
+VM2400:1 100 6
+VM2400:1 88 7
+VM2400:1 200 8
+VM2400:1 55 9
+VM2400:1 444 10
+undefined
+arr.forEach((element,index, a)=>console.log(element, index, a));
+VM2431:1 111 0 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 10 1 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 90 2 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 7654 3 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 5555 4 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 88888 5 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 100 6 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 88 7 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 200 8 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 55 9 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+VM2431:1 444 10 (11) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444]
+undefined
+arr.find(element=>element==10);
+10
+arr.push(10);
+12
+arr;
+(12) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444, 10]0: 1111: 102: 903: 76544: 55555: 888886: 1007: 888: 2009: 5510: 44411: 10length: 12__proto__: Array(0)
+arr.find(element=>element==10);
+10
+arr.find(element=>element==164546540);
+undefined
+arr.findIndex(element=>element==10);
+1
+arr.findIndex(element=>element==1550);
+-1
+arr.filter(element=>element==10);
+(2) [10, 10]
+arr;
+(12) [111, 10, 90, 7654, 5555, 88888, 100, 88, 200, 55, 444, 10]
+arr = arr.filter(element=>element<=100);
+(6) [10, 90, 100, 88, 55, 10]
+arr;
+(6) [10, 90, 100, 88, 55, 10]
+var prices = [90,100.90,5555.10,4444.2];
+undefined
+var e = 9000.20;
+undefined
+e.toLocaleString('hi-IN');
+"9,000.2"
+var formattedArray = prices.map(price=>price.toLocaleString('hi-IN'));
+undefined
+formattedArray
+(4) ["90", "100.9", "5,555.1", "4,444.2"]
+prices;
+(4) [90, 100.9, 5555.1, 4444.2]
+var gstArray = prices.map(price=>price + price * 0.18);
+undefined
+gstArray;
+(4) [106.2, 119.06200000000001, 6555.018, 5244.156]
+var e = 119.06200000000001;
+undefined
+typeof e;
+"number"
+e.toFixed();
+"119"
+e.toPrecision(4);
+"119.1"
+arr;
+(6) [10, 90, 100, 88, 55, 10]
+var e = [...arr];
+undefined
+e;
+(6) [10, 90, 100, 88, 55, 10]
+var arr2 = arr.map(element=>element);
+undefined
+arr2 == arr;
+false
+arr2;
+(6) [10, 90, 100, 88, 55, 10]
+arr;
+(6) [10, 90, 100, 88, 55, 10]
+arr[0] = 1111;
+1111
+arr;
+(6) [1111, 90, 100, 88, 55, 10]
+arr2;
+(6) [10, 90, 100, 88, 55, 10]
+var ff = arr.filter(element=>true);
+undefined
+ff == arr;
+false
+ff;
+(6) [1111, 90, 100, 88, 55, 10]
+arr;
+(6) [1111, 90, 100, 88, 55, 10]
+ff[0] =22;
+22
+ff;
+(6) [22, 90, 100, 88, 55, 10]
+arr;
+(6) [1111, 90, 100, 88, 55, 10]
+var g = arr.reduce((acc,element)=>acc.push(element), acc= []);
+VM4284:1 Uncaught TypeError: acc.push is not a function
+    at arr.reduce.acc (<anonymous>:1:39)
+    at Array.reduce (<anonymous>)
+    at <anonymous>:1:13
+arr.reduce.acc @ VM4284:1
+(anonymous) @ VM4284:1
+var g = arr.reduce((acc,element)=>{
+acc.push(element);
+return acc;
+}, acc=[]);
+undefined
+g;
+(6) [1111, 90, 100, 88, 55, 10]
+g == arr;
+false
+arr;
+(6) [1111, 90, 100, 88, 55, 10]
+arr.every(element=>element>20);
+false
+arr.every(element=>element>1);
+true
+arr.some(element=>element>100);
+true
+arr.reverse();
+(6) [10, 55, 88, 100, 90, 1111]
+arr;
+(6) [10, 55, 88, 100, 90, 1111]
+arr.sort();
+(6) [10, 100, 1111, 55, 88, 90]0: 101: 1002: 11113: 554: 885: 90length: 6__proto__: Array(0)
+arr.sort((first, second)=>first - second);
+(6) [10, 55, 88, 90, 100, 1111]
+arr.sort((first, second)=>second - first);
+(6) [1111, 100, 90, 88, 55, 10]
+var names = ["amit","ram","anil","shyam","ajay"];
+undefined
+"amit".localeCompare("ram")
+-1
+"ram".localeCompare("amit")
+1
+"ram".localeCompare("ram")
+0
+names.sort((first, second)=>first.localeCompare(second));
+(5) ["ajay", "amit", "anil", "ram", "shyam"]
+names.sort((first, second)=>second.localeCompare(first));
+(5) ["shyam", "ram", "anil", "amit", "ajay"]
+names.push("Ramesh");
+6
+names.sort((first, second)=>second.localeCompare(first));
+(6) ["shyam", "Ramesh", "ram", "anil", "amit", "ajay"]
+names.sort((first, second)=>second.localeCompare(first));
+(6) ["shyam", "Ramesh", "ram", "anil", "amit", "ajay"]
+names.sort((first, second)=>first.localeCompare(second));
+(6) ["ajay", "amit", "anil", "ram", "Ramesh", "shyam"]

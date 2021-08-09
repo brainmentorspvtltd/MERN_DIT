@@ -1,0 +1,8 @@
+var q = [10,20];
+undefined
+q.push
+ƒ push() { [native code] }
+q.unshift
+ƒ unshift() { [native code] }
+q.insert
+undefined

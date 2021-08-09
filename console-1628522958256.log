@@ -1,0 +1,61 @@
+const add = (a,b)=>a+b;
+undefined
+typeof add;
+"function"
+add(10,20);
+30
+const adder = (a,b)=>{
+console.log('a is ',a,' b is ',b);
+return a + b;
+}
+undefined
+typeof adder;
+"function"
+adder(10,20);
+VM254:2 a is  10  b is  20
+30
+const adder2 = (a=0,b=0)=>{
+console.log('a is ',a,' b is ',b);
+return a + b;
+}
+undefined
+adder2();
+VM330:2 a is  0  b is  0
+0
+const adder3= num=>num**3;
+undefined
+adder3(10);
+1000
+var arr = [10,20,30,40,50];
+undefined
+var sum = 0;
+for(let i = 0; i<arr.length; i++){
+if(arr[i]>20){
+sum+=arr[i];
+}
+}
+console.log(sum);
+VM698:7 120
+undefined
+add(10,20);
+30
+add(10,20);
+30
+var f = 1000;
+undefined
+function total(x,y){
+return x + y + f;
+}
+undefined
+total(1,2);
+1003
+total(1,2);
+1003
+f = 999;
+999
+total(1,2);
+1002
+f = 1;
+1
+total(1,2);
+4
