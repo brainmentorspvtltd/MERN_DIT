@@ -1,0 +1,12 @@
+var z = 10 * "amit";
+undefined
+z;
+NaN
+z = 10 - "amit"
+NaN
+NaN === NaN
+false
+typeof NaN === typeof NaN
+true
+NaN == NaN
+false

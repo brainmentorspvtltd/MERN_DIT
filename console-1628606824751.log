@@ -1,0 +1,241 @@
+function init(){
+var count = 0;
+return function (){
+
+return ++count;
+}
+}
+undefined
+var e = init();
+undefined
+e();
+1
+e();
+2
+e();
+3
+typeof e;
+"function"
+e;
+ƒ (){
+
+return ++count;
+}
+e = init();
+ƒ (){
+
+return ++count;
+}
+e();
+1
+e();
+2
+var d = (function(){
+var count = 0;
+return function(){
+count++;
+return count;
+}
+})();
+undefined
+typeof d;
+"function"
+d();
+1
+d();
+2
+d();
+3
+d();
+4
+d();
+5
+function show(){
+    for(let i = 1; i<=10; i++){
+    console.log('i is ',i);
+}
+}
+undefined
+show();
+VM573:3 i is  1
+VM573:3 i is  2
+VM573:3 i is  3
+VM573:3 i is  4
+VM573:3 i is  5
+VM573:3 i is  6
+VM573:3 i is  7
+VM573:3 i is  8
+VM573:3 i is  9
+VM573:3 i is  10
+undefined
+function show(){
+    for(let i = 1; i<=10; i++){
+    console.log('i is ',i);
+}
+console.log(i);
+}
+undefined
+show();
+VM616:3 i is  1
+VM616:3 i is  2
+VM616:3 i is  3
+VM616:3 i is  4
+VM616:3 i is  5
+VM616:3 i is  6
+VM616:3 i is  7
+VM616:3 i is  8
+VM616:3 i is  9
+VM616:3 i is  10
+VM616:5 Uncaught ReferenceError: i is not defined
+    at show (<anonymous>:5:13)
+    at <anonymous>:1:1
+show @ VM616:5
+(anonymous) @ VM622:1
+function show(){
+    (function(){
+    for(var i = 1; i<=10; i++){
+    console.log('i is ',i);
+    })();
+}
+console.log(i);
+}
+VM666:5 Uncaught SyntaxError: Unexpected token ')'
+function show(){
+    (function(){
+    for(var i = 1; i<=10; i++){
+    console.log('i is ',i);
+    }
+})();
+}
+console.log(i);
+}
+VM675:9 Uncaught SyntaxError: Unexpected token '}'
+function show(){
+    (function(){
+    for(var i = 1; i<=10; i++){
+    console.log('i is ',i);
+    }
+})();
+
+console.log(i);
+}
+undefined
+show();
+VM681:4 i is  1
+VM681:4 i is  2
+VM681:4 i is  3
+VM681:4 i is  4
+VM681:4 i is  5
+VM681:4 i is  6
+VM681:4 i is  7
+VM681:4 i is  8
+VM681:4 i is  9
+VM681:4 i is  10
+VM681:8 Uncaught ReferenceError: i is not defined
+    at show (<anonymous>:8:13)
+    at <anonymous>:1:1
+show @ VM681:8
+(anonymous) @ VM701:1
+function show(){
+    (function(){
+    for(var i = 1; i<=10; i++){
+    console.log('i is ',i);
+    }
+})();
+
+//console.log(i);
+}
+undefined
+show();
+VM709:4 i is  1
+VM709:4 i is  2
+VM709:4 i is  3
+VM709:4 i is  4
+VM709:4 i is  5
+VM709:4 i is  6
+VM709:4 i is  7
+VM709:4 i is  8
+VM709:4 i is  9
+VM709:4 i is  10
+undefined
+function cube(num){
+    for(let i = 1; i<=100000; i++){
+        for(j=1; j<=100000; j++){
+        
+} // j loop end
+} // i loop end
+return num**3;
+}
+undefined
+cube(3);
+27
+function cube(num){
+console.log('Processing Start ');
+    for(let i = 1; i<=100000; i++){
+        for(j=1; j<=100000; j++){
+        
+} // j loop end
+} // i loop end
+console.log('Big Processing Ends ');
+console.log( num**3);
+}
+undefined
+cube(3);
+VM1155:2 Processing Start 
+VM1155:8 Big Processing Ends 
+VM1155:9 27
+undefined
+cube(3);
+VM1155:2 Processing Start 
+VM1155:8 Big Processing Ends 
+VM1155:9 27
+undefined
+var cache = {};
+function cube(num){
+if(cache[num]){
+console.log('Coming from the Cache ', cache[num]);
+return ; // exit from the function
+}
+console.log('Processing Start ');
+    for(let i = 1; i<=100000; i++){
+        for(j=1; j<=100000; j++){
+        
+} // j loop end
+} // i loop end
+console.log('Big Processing Ends ');
+cache[num] = num**3;
+console.log( cache[num]);
+}
+undefined
+cache
+{}
+cube(3);
+VM1423:7 Processing Start 
+VM1423:13 Big Processing Ends 
+VM1423:15 27
+undefined
+cache
+{3: 27}
+cube(3);
+VM1423:4 Coming from the Cache  27
+undefined
+cube(5);
+VM1423:7 Processing Start 
+VM1423:13 Big Processing Ends 
+VM1423:15 125
+undefined
+cache
+{3: 27, 5: 125}
+cube(5);
+VM1423:4 Coming from the Cache  125
+undefined
+function dalCurry(type){
+    return function(salt){
+        return function (oil){
+            return type + salt + oil;
+}
+}
+}
+undefined
+dalCurry('Yellow Dal')('Rock Salt')('SunFlower Oil')
+"Yellow DalRock SaltSunFlower Oil"

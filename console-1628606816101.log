@@ -1,0 +1,197 @@
+var obj  = {id:101,name:'Ram'};
+undefined
+typeof obj;
+"object"
+obj instanceof Object;
+true
+typeof Object;
+"function"
+obj.id;
+101
+obj.name;
+"Ram"
+var key = "id";
+undefined
+typeof  key;
+"string"
+obj.key
+undefined
+obj[key];
+101
+obj;
+{id: 101, name: "Ram"}
+obj.5=22
+VM385:1 Uncaught SyntaxError: Unexpected number
+obj.id;
+101
+obj.name;
+"Ram"
+obj[5]=22;
+22
+obj;
+{5: 22, id: 101, name: "Ram"}
+obj.5;
+VM507:1 Uncaught SyntaxError: Unexpected number
+obj[5];
+22
+obj["tech excel"] = true;
+true
+obj;
+{5: 22, id: 101, name: "Ram", tech excel: true}
+obj.tech excel = true;
+VM695:1 Uncaught SyntaxError: Unexpected identifier
+obj['tech excel'];
+true
+obj;
+{5: 22, id: 101, name: "Ram", tech excel: true}
+for(let key in obj){
+console.log(key);
+}
+VM841:2 5
+VM841:2 id
+VM841:2 name
+VM841:2 tech excel
+undefined
+for(let key in obj){
+console.log(key+ " " + obj[key]);
+}
+VM882:2 5 22
+VM882:2 id 101
+VM882:2 name Ram
+VM882:2 tech excel true
+undefined
+function createEmployee(id,name,salary){
+var emp = {};
+emp.id = id;
+emp.name = name;
+emp.salary = salary;
+return emp;
+}
+
+undefined
+var ram = createEmployee(1001, 'Ram',9999);
+undefined
+ram;
+{id: 1001, name: "Ram", salary: 9999}
+typeof ram;
+"object"
+ram instanceof Object;
+true
+var shyam = createEmployee(1002, "Shyam",9999);
+undefined
+shyam;
+{id: 1002, name: "Shyam", salary: 9999}
+ram == shyam;
+false
+ram instanceof createEmployee;
+false
+function Employee(){
+
+}
+undefined
+var ramesh = new Employee();
+undefined
+ramesh
+Employee {}
+ram;
+{id: 1001, name: "Ram", salary: 9999}
+typeof ramesh;
+"object"
+typeof ram;
+"object"
+ramesh instanceof Employee;
+true
+ram instanceof createEmployee;
+false
+ram instanceof Object;
+true
+ramesh instanceof Employee;
+true
+ramesh instanceof Object;
+true
+function Employee(){
+    console.log(this);
+}
+undefined
+var mike= new Employee();
+VM2011:2 Employee {}
+undefined
+mike;
+Employee {}__proto__: Object
+// Function Constructor
+function Employee(id = 0, name='', salary=0.0){
+    //console.log(this); this = {}; Empty Object
+    this.id =id;
+    this.name = name;
+    this.salary = salary;
+}
+undefined
+var tom = new Employee(1001, 'Tom',8888);
+undefined
+tom;
+Employee {id: 1001, name: "Tom", salary: 8888}
+typeof tom;
+"object"
+tom instanceof Employee;
+true
+tom.id;
+1001
+tom.name;
+"Tom"
+tom['salary']
+8888
+// Function Constructor
+function Employee(id = 0, name='', salary=0.0){
+    //console.log(this); this = {}; Empty Object
+    this.id =id;
+    this.name = name;
+    this.salary = salary;
+    this.printIt = function(){
+    console.log(`Id is ${this.id} Name is ${this.name} Salary is ${this.salary}`);
+}
+}
+undefined
+var tom = new Employee(1001, 'Tom',8888);
+undefined
+tom;
+Employee {id: 1001, name: "Tom", salary: 8888, printIt: ƒ}id: 1001name: "Tom"printIt: ƒ ()salary: 8888__proto__: Object
+tom.printIt();
+VM2644:8 Id is 1001 Name is Tom Salary is 8888
+undefined
+var mike = new Employee(1002, "Mike",4444);
+undefined
+mike
+Employee {id: 1002, name: "Mike", salary: 4444, printIt: ƒ}id: 1002name: "Mike"printIt: ƒ ()arguments: nullcaller: nulllength: 0name: ""prototype: {constructor: ƒ}__proto__: ƒ ()[[FunctionLocation]]: VM2644:7[[Scopes]]: Scopes[1]salary: 4444__proto__: Object
+function myPrintIt(){
+console.log(this);
+}
+undefined
+myPrintIt();
+VM3049:2 Window {window: Window, self: Window, document: document, name: "", location: Location, …}
+undefined
+window.myPrintIt();
+VM3049:2 Window {window: Window, self: Window, document: document, name: "", location: Location, …}
+undefined
+window == this;
+true
+var w = new myPrintIt();
+VM3049:2 myPrintIt {}
+undefined
+// Function Constructor
+function Employee(id = 0, name='', salary=0.0){
+    //console.log(this); this = {}; Empty Object
+    this.id =id;
+    this.name = name;
+    this.salary = salary;
+    this.printIt = function(){
+    console.log(`Id is ${this.id} Name is ${this.name} Salary is ${this.salary}`);
+}
+}
+undefined
+console.dir(Employee);
+VM3264:1 ƒ Employee(id = 0, name='', salary=0.0)arguments: nullcaller: nulllength: 0name: "Employee"prototype: {constructor: ƒ}__proto__: ƒ ()[[FunctionLocation]]: VM3213:2[[Scopes]]: Scopes[1]
+undefined
+Employee.prototype
+{constructor: ƒ}constructor: ƒ Employee(id = 0, name='', salary=0.0)__proto__: Object
+typeof Employee.prototype;
+"object"
