@@ -1,0 +1,5 @@
+
+There is a Person class, containing Personal Info and we have a child class of student, containing student info, this compute marks and grade and print the details of student
+after this there is a child class of student and it is employee it contain employee info and it compute hra, da , ta , gs.
+and then print employee info.
+We need to create a inheritance , manage constructor call and we need to understand the linkage among the classes by using proto and prototype.
