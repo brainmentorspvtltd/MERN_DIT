@@ -1,0 +1,40 @@
+var name = 'aMiT sRivasTAvA';
+undefined
+var names = name.split(' ');
+undefined
+names;
+(2) ["aMiT", "sRivasTAvA"]
+for(let i =0;i<names.length; i++){
+    let currentName = names[i];
+    currentName = currentName.charAt(0).toUpperCase() + currentName.substring(1);
+    console.log(currentName);
+}
+VM458:4 AMiT
+VM458:4 SRivasTAvA
+undefined
+for(let i =0;i<names.length; i++){
+    let currentName = names[i];
+    currentName = currentName.charAt(0).toUpperCase() + currentName.substring(1).toLowerCase();
+    console.log(currentName);
+}
+VM478:4 Amit
+VM478:4 Srivastava
+undefined
+var fullName = '';
+for(let i =0;i<names.length; i++){
+    let currentName = names[i];
+    currentName = currentName.charAt(0).toUpperCase() + currentName.substring(1).toLowerCase();
+    fullName+=currentName + " ";
+    //console.log(currentName);
+}
+console.log(fullName);
+VM595:8 Amit Srivastava 
+undefined
+var price = 9000;
+undefined
+price.toLocaleString('hi-IN');
+"9,000"
+"Rs "+price.toLocaleString('hi-IN');
+"Rs 9,000"
+"Rs "+price.toLocaleString('fr-FR');
+"Rs 9 000"

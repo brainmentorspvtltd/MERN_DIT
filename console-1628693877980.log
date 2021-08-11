@@ -1,0 +1,94 @@
+class A{}
+undefined
+typeof A;
+"function"
+class Employee{
+constructor(id=0, name='', salary=0.0){
+this.id = id;
+this.name = name;
+this.salary= salary;
+}
+hra(){
+return this.salary * 0.50;
+}
+da(){
+return this.salary * 0.20;
+}
+gs(){
+return this.salary + this.hra () + this.da();
+}
+}
+undefined
+typeof Employee;
+"function"
+Employee.prototype;
+{constructor: ƒ, hra: ƒ, da: ƒ, gs: ƒ}constructor: class Employeeda: ƒ da()gs: ƒ gs()hra: ƒ hra()__proto__: Object
+if(10>2){
+Employee.prototype.ma= function(){
+return this.salary * 0.15;
+}
+}
+ƒ (){
+return this.salary * 0.15;
+}
+Employee.prototype
+{ma: ƒ, constructor: ƒ, hra: ƒ, da: ƒ, gs: ƒ}
+var ram = new Employee(1001, "Ram",9000);
+undefined
+ram.ma();
+1350
+ram.gs();
+15300
+class P{
+constructor(){
+this.x = 100;
+}
+show(){
+console.log("I am P Show ");
+}
+}
+class Q extends P{
+constructor(){
+super(); // Invoke Parent class Constructor
+console.log("I am Q Show ");
+}
+show(){
+super.show();
+console.log("I am Q Show ");
+}
+}
+undefined
+typeof Q;
+"function"
+Q.prototype
+P {constructor: ƒ, show: ƒ}constructor: class Qshow: ƒ show()__proto__: Object
+Q.prototype.__proto__;
+{constructor: ƒ, show: ƒ}constructor: class Pshow: ƒ show()__proto__: Object
+Q.prototype.__proto__ == P.prototype;
+true
+Q.prototype.__proto__.__proto__== Object.prototype;
+true
+var obj = new Q();
+VM1178:12 I am Q Show 
+undefined
+obj.show();
+VM1178:6 I am P Show 
+VM1178:16 I am Q Show 
+undefined
+P.prototype.disp = function(){
+console.log("I am Disp ");
+}
+ƒ (){
+console.log("I am Disp ");
+}
+obj.disp();
+VM1629:2 I am Disp 
+undefined
+obj;
+Q {x: 100}x: 100__proto__: Pconstructor: class Qshow: ƒ show()__proto__: disp: ƒ ()constructor: class Pshow: ƒ show()__proto__: Object
+obj.disp();
+VM1629:2 I am Disp 
+undefined
+obj.__proto__.__proto__.disp();
+VM1629:2 I am Disp 
+undefined

@@ -1,0 +1,92 @@
+function Employee(id=0, name='', salary=0.0){
+this.id = id;
+this.name = name;
+this.salary = salary;
+
+}
+undefined
+Employee.prototype.hra = function(){
+return this.salary * 0.50;
+}
+Employee.prototype.da = function(){
+return this.salary * 0.20;
+}
+Employee.prototype.ta = function(){
+return this.salary * 0.10;
+}
+Employee.prototype.ma = function(){
+return this.salary * 0.15;
+}
+Employee.prototype.pf = function(){
+return this.salary * 0.05;
+}
+Employee.prototype.gs = function(){
+return this.salary + this.hra() + this.da() + this.ta() + this.ma() + this.bonus;
+}
+Employee.prototype.tax = function(){
+return this.salary * 0.10;
+}
+Employee.prototype.ns = function(){
+return this.salary - this.tax() - this.pf();
+}
+Employee.prototype.properCase= function(name){
+var names = name.split(' ');
+var fullName = '';
+for(let i =0;i<names.length; i++){
+    let currentName = names[i];
+    currentName = currentName.charAt(0).toUpperCase() + currentName.substring(1).toLowerCase();
+    fullName+=currentName + " ";
+    //console.log(currentName);
+}
+return fullName;
+}
+Employee.prototype.format= function(val){
+    return "Rs "+val.toLocaleString('hi-IN');
+}
+Employee.prototype.bonus = 1000;
+Employee.prototype.print = function(){
+return ` Name is ${this.properCase(this.name)}
+    HRA is ${this.format(this.hra())}
+    DA is ${this.format(this.da())}
+    TA is ${this.format(this.ta())}
+    MA is ${this.format(this.ma())}
+    PF is ${this.format(this.pf())}
+    GS is ${this.format(this.gs())}
+    TAX is ${this.format(this.tax())}
+    NS is ${this.format(this.ns())}
+`;
+}
+ƒ (){
+return ` Name is ${this.properCase(this.name)}
+    HRA is ${this.format(this.hra())}
+    DA is ${this.format(this.da())}
+    TA is ${this.format(this.ta())}
+    MA is ${this.format(this.ma())}
+  …
+Employee;
+ƒ Employee(id=0, name='', salary=0.0){
+this.id = id;
+this.name = name;
+this.salary = salary;
+
+}
+Employee.prototype
+{hra: ƒ, da: ƒ, ta: ƒ, ma: ƒ, pf: ƒ, …}bonus: 1000da: ƒ ()format: ƒ (val)gs: ƒ ()hra: ƒ ()ma: ƒ ()ns: ƒ ()pf: ƒ ()print: ƒ ()properCase: ƒ (name)ta: ƒ ()tax: ƒ ()constructor: ƒ Employee(id=0, name='', salary=0.0)__proto__: Object
+var amit = new Employee(1001,'amIT sRivastAva',9000);
+undefined
+amit;
+Employee {id: 1001, name: "amIT sRivastAva", salary: 9000}id: 1001name: "amIT sRivastAva"salary: 9000__proto__: bonus: 1000da: ƒ ()format: ƒ (val)gs: ƒ ()hra: ƒ ()ma: ƒ ()ns: ƒ ()pf: ƒ ()print: ƒ ()properCase: ƒ (name)ta: ƒ ()tax: ƒ ()constructor: ƒ Employee(id=0, name='', salary=0.0)__proto__: Object
+amit.print();
+" Name is Amit Srivastava \n    HRA is Rs 4,500\n    DA is Rs 1,800\n    TA is Rs 900\n    MA is Rs 1,350\n    PF is Rs 450\n    GS is Rs 18,550\n    TAX is Rs 900\n    NS is Rs 7,650\n"
+console.log(amit.print());
+VM1262:1  Name is Amit Srivastava 
+    HRA is Rs 4,500
+    DA is Rs 1,800
+    TA is Rs 900
+    MA is Rs 1,350
+    PF is Rs 450
+    GS is Rs 18,550
+    TAX is Rs 900
+    NS is Rs 7,650
+
+undefined
