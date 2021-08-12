@@ -1,0 +1,232 @@
+/* Global Settings */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: 'Hind Siliguri', sans-serif;
+}
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Helper Classes */
+.clear:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+}
+
+.container-fluid {
+    padding: 0px 15px;
+}
+
+.sprite {
+    background-image: url("https://www.icc-cricket.com/resources/prod/v8.19.7/i/sprites/global-sprite.png");
+}
+
+/* Common Settings */
+
+#topbar {
+    padding: 5px 20px 3px 0px;
+}
+#topbar .row {
+    justify-content: flex-end;
+    align-items: center;
+}
+#topbar ul li {
+    display: inline-block;
+    margin: 0px 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+#topbar ul li a {
+    color: #95A1A8;
+}
+#topbar .col-1 {
+    width: 19%;
+}
+#topbar .col-2 {
+    width: 13%;
+}
+#topbar .col-3 {
+    width: 17%;
+}
+#topbar .col-3 a {
+    background-color: #001036;
+    color: #fff;
+    display: block;
+    padding: 5px 8px;
+    transition-duration: 0.2s;
+}
+#topbar .col-3 a:hover {
+    background-color: #087AC0;
+}
+
+#topbar .sociable li {
+    background-color: #95A1A8;
+    margin: 0px 3px;
+    width: 26px;
+    text-align: center;
+    font-size: 15px;
+    padding-top: 2px;
+    height: 24px;
+    border-radius: 50%;
+    transition-duration: 0.2s;
+}
+#topbar .sociable li a {
+    color: #fff;
+}
+#topbar .sociable li:hover {
+    background-color: #001036;
+}
+
+#header {
+    background: linear-gradient(180deg,rgba(0,16,54,.5),rgba(0,16,54,0));
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+#header .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-image: url("https://www.icc-cricket.com/resources/prod/v8.19.7/i/branding-elements/main-nav-bg.png");
+    background-size: 100% 100%; */
+    /* background-color: #00175f; */
+    background: linear-gradient(90deg, #00175f, rgba(255,255,255,0.1));
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+#header .row {
+    align-items: center;
+}
+
+#header .logo {
+    width: 14%;
+}
+#header .logo a {
+    padding: 10px 0px;
+    display: block;
+}
+#header .logo .sprite{
+    display: block;
+    width: 138px;
+    height: 51px;
+    background-position: -590px -1217px;
+}
+#header .search {
+    width: 26%;
+    text-align: right;
+}
+
+#main-navigation {
+    width: 60%;
+}
+#main-navigation > ul {
+    display: flex;
+    justify-content: space-between;
+}
+#main-navigation > ul > li {
+    position: relative;
+    padding: 23px 0px;
+}
+#main-navigation > ul > li > a {
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+}
+#main-navigation > ul > li > a:after {
+    content: "";
+    position: absolute;
+    right: -16px;
+    border-bottom: 2px solid #fff;
+    top: 8px;
+    height: 5px;
+    width: 5px;
+    border-left: 2px solid #fff;
+    transform: rotate(-45deg);
+}
+
+#main-navigation .dropdown {
+    position: absolute;
+    width: 400%;
+    left: -150%;
+    padding: 10px;
+    top: 73px;
+    background-color: #fff;
+    /* display: none; */
+    transform: scale(0,0);
+    transform-origin: top;
+    transition-duration: 0.5s;
+}
+#main-navigation .dropdown ul li a {
+    color: #087AC0;
+}
+#main-navigation ul li:hover .dropdown {
+    /* display: block; */
+    transform: scale(1,1);
+}
+
+#banner {
+    position: relative;
+    max-height: 400px;
+    overflow: hidden;
+}
+#banner .overlay {
+    background-image: url("https://www.icc-cricket.com/resources/prod/v8.19.7/i/bg-elements/hpto-bg.png");
+    background-size: 100% 100%;
+    background-color: #001146;
+    position: absolute;
+    height: 100%;
+    width: 40%;
+}
+
+#banner .desc {
+    width: 25%;
+    padding: 80px 0px 0px 15px;
+    position: relative;
+    z-index: 10;
+    color: #fff;
+}
+#banner .image {
+    width: 75%;
+    margin-top: -55px;
+    position: relative;
+}
+#banner .image:before {
+    content: "";
+    background: linear-gradient(90deg,#001146 0,rgba(0,17,70,0) 60%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+}
+
+#footer {
+
+}
+
+/* Specific Settings */
