@@ -1,0 +1,115 @@
+function whoAmI(){
+    console.log('I am ', this.name);
+}
+undefined
+var name = 'Amit';
+undefined
+window.name;
+"Amit"
+window.whoAmI(); 
+VM106:2 I am  Amit
+undefined
+whoAmI();
+VM106:2 I am  Amit
+undefined
+window == this;
+true
+var obj ={name:'Ramesh'};
+undefined
+window.obj.name;
+"Ramesh"
+var obj2 = {
+show(){
+console.log('I am Show ', this);
+}
+}
+undefined
+obj2.show() ; // Implicit Binding
+VM459:3 I am Show  {show: ƒ}
+undefined
+whoAmI
+ƒ whoAmI(){
+    console.log('I am ', this.name);
+}
+whoAmI();
+VM106:2 I am  Amit
+undefined
+obj;
+{name: "Ramesh"}
+window.name;
+"Amit"
+whoAmI.call(obj); // Explicit Binding
+VM106:2 I am  Ramesh
+undefined
+whoAmI();
+VM106:2 I am  Amit
+undefined
+whoAmI.apply(obj);
+VM106:2 I am  Ramesh
+undefined
+function whoAmI(age, city){
+    console.log('I am ', this.name, ' Age ' , age, 'city',city);
+}
+undefined
+whoAmI(21,'Delhi');
+VM945:2 I am  Amit  Age  21 city Delhi
+undefined
+whoAmI.call(obj);
+VM945:2 I am  Ramesh  Age  undefined city undefined
+undefined
+whoAmI.call(obj,22,'Mumbai');
+VM945:2 I am  Ramesh  Age  22 city Mumbai
+undefined
+whoAmI.apply(obj,[22,'Mumbai']);
+VM945:2 I am  Ramesh  Age  22 city Mumbai
+undefined
+function show([a,b]){
+console.log(a, b);
+}
+undefined
+arr;
+VM1256:1 Uncaught ReferenceError: arr is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM1256:1
+var arr = [10,20,30,40,50,60];
+undefined
+show(arr);
+VM1229:2 10 20
+undefined
+whoAmI
+ƒ whoAmI(age, city){
+    console.log('I am ', this.name, ' Age ' , age, 'city',city);
+}
+var arr= [22, 'Delhi'];
+whoAmI.apply(obj, arr);
+VM945:2 I am  Ramesh  Age  22 city Delhi
+undefined
+whoAmI.call(obj,23,'Delhi');
+VM945:2 I am  Ramesh  Age  23 city Delhi
+undefined
+var fn = whoAmI.bind(obj);
+undefined
+fn;
+ƒ whoAmI(age, city){
+    console.log('I am ', this.name, ' Age ' , age, 'city',city);
+}
+fn(24,'Delhi');
+VM945:2 I am  Ramesh  Age  24 city Delhi
+undefined
+fn(24,'Delhi');
+VM945:2 I am  Ramesh  Age  24 city Delhi
+undefined
+obj;
+{name: "Ramesh"}
+whoAmI(22,'Delhi');
+VM945:2 I am  Amit  Age  22 city Delhi
+undefined
+function show(){
+console.log("I am Show ", this);
+}
+undefined
+var obj2 = new show();
+VM1733:2 I am Show  show {}__proto__: Object
+undefined
+obj2 instanceof show;
+true

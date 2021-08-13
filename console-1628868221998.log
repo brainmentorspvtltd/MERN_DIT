@@ -1,0 +1,398 @@
+function Person(name, age){
+this.name= name;
+this.age = age;
+console.log('Person Cons Call ');
+}
+Person.prototype.print=function(){
+console.log(`Name ${this.name} Age ${this.age}`);
+}
+function Student(rollno, marks, name, age){
+// super cons Call ??
+this.rollno = rollno;
+this.marks = marks;
+}
+Student.prototype.print = function(){
+this.print();
+console.log(`Rollno ${this.rollno} Marks ${this.marks}`);
+}
+Student.prototype.__proto__= Person.prototype;
+function Employee(id, salary, rollno, marks, name, age){
+    // super cons call ??
+    this.id = id;
+    this.salary = salary;
+}
+Employee.prototype.printEmp = function(){
+this.print();
+console.log(` Id ${this.id} Salary ${this.salary}`);
+}
+Employee.prototype.__proto__ = Student.prototype;
+var ram =new Employee(1001, 9000, 10, 90,'Ram',21);
+ram.printEmp();
+
+VM1427:15 Uncaught RangeError: Maximum call stack size exceeded
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+    at Employee.Student.print (<anonymous>:15:6)
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Student.print @ VM1427:15
+Show 170 more frames
+function Person(name, age){
+this.name= name;
+this.age = age;
+console.log('Person Cons Call ');
+}
+Person.prototype.print=function(){
+console.log(`Name ${this.name} Age ${this.age}`);
+}
+function Student(rollno, marks, name, age){
+// super cons Call ??
+this.rollno = rollno;
+this.marks = marks;
+}
+Student.prototype.print = function(){
+//this.print();
+console.log(`Rollno ${this.rollno} Marks ${this.marks}`);
+}
+Student.prototype.__proto__= Person.prototype;
+function Employee(id, salary, rollno, marks, name, age){
+    // super cons call ??
+    this.id = id;
+    this.salary = salary;
+}
+Employee.prototype.printEmp = function(){
+this.print();
+console.log(` Id ${this.id} Salary ${this.salary}`);
+}
+Employee.prototype.__proto__ = Student.prototype;
+var ram =new Employee(1001, 9000, 10, 90,'Ram',21);
+ram.printEmp();
+
+VM1434:16 Rollno undefined Marks undefined
+VM1434:26  Id 1001 Salary 9000
+undefined
+function Person(name, age){
+this.name= name;
+this.age = age;
+console.log('Person Cons Call ');
+}
+Person.prototype.print=function(){
+console.log(`Name ${this.name} Age ${this.age}`);
+}
+function Student(rollno, marks, name, age){
+// super cons Call ??
+console.log('Student Cons Call ');
+this.rollno = rollno;
+this.marks = marks;
+}
+Student.prototype.print = function(){
+//this.print();
+console.log(`Rollno ${this.rollno} Marks ${this.marks}`);
+}
+Student.prototype.__proto__= Person.prototype;
+function Employee(id, salary, rollno, marks, name, age){
+    // super cons call ??
+console.log('Emp Cons Call ');
+    this.id = id;
+    this.salary = salary;
+}
+Employee.prototype.printEmp = function(){
+this.print();
+console.log(` Id ${this.id} Salary ${this.salary}`);
+}
+Employee.prototype.__proto__ = Student.prototype;
+var ram =new Employee(1001, 9000, 10, 90,'Ram',21);
+ram.printEmp();
+
+VM1450:22 Emp Cons Call 
+VM1450:17 Rollno undefined Marks undefined
+VM1450:28  Id 1001 Salary 9000
+undefined
+function Person(name, age){
+this.name= name;
+this.age = age;
+console.log('Person Cons Call ');
+}
+Person.prototype.print=function(){
+console.log(`Name ${this.name} Age ${this.age}`);
+}
+function Student(rollno, marks, name, age){
+// super cons Call ??
+Person.call(this, name,age);
+console.log('Student Cons Call ');
+this.rollno = rollno;
+this.marks = marks;
+}
+Student.prototype.print = function(){
+//this.print();
+console.log(`Rollno ${this.rollno} Marks ${this.marks}`);
+}
+Student.prototype.__proto__= Person.prototype;
+function Employee(id, salary, rollno, marks, name, age){
+    // super cons call ??
+Student.call(this,rollno, marks,name,age);
+console.log('Emp Cons Call ');
+    this.id = id;
+    this.salary = salary;
+}
+Employee.prototype.printEmp = function(){
+this.print();
+console.log(` Id ${this.id} Salary ${this.salary}`);
+}
+Employee.prototype.__proto__ = Student.prototype;
+var ram =new Employee(1001, 9000, 10, 90,'Ram',21);
+ram.printEmp();
+
+VM1622:4 Person Cons Call 
+VM1622:12 Student Cons Call 
+VM1622:24 Emp Cons Call 
+VM1622:18 Rollno 10 Marks 90
+VM1622:30  Id 1001 Salary 9000
+undefined
+function Person(name, age){
+this.name= name;
+this.age = age;
+console.log('Person Cons Call ');
+}
+Person.prototype.print=function(){
+console.log(`Name ${this.name} Age ${this.age}`);
+}
+function Student(rollno, marks, name, age){
+// super cons Call ??
+Person.call(this, name,age);
+console.log('Student Cons Call ');
+this.rollno = rollno;
+this.marks = marks;
+}
+Student.prototype.print = function(){
+Person.prototype.print.call(this);
+//this.print();
+console.log(`Rollno ${this.rollno} Marks ${this.marks}`);
+}
+Student.prototype.__proto__= Person.prototype;
+function Employee(id, salary, rollno, marks, name, age){
+    // super cons call ??
+Student.call(this,rollno, marks,name,age);
+console.log('Emp Cons Call ');
+    this.id = id;
+    this.salary = salary;
+}
+Employee.prototype.printEmp = function(){
+this.print();
+console.log(` Id ${this.id} Salary ${this.salary}`);
+}
+Employee.prototype.__proto__ = Student.prototype;
+var ram =new Employee(1001, 9000, 10, 90,'Ram',21);
+ram.printEmp();
+
+VM1683:4 Person Cons Call 
+VM1683:12 Student Cons Call 
+VM1683:25 Emp Cons Call 
+VM1683:7 Name Ram Age 21
+VM1683:19 Rollno 10 Marks 90
+VM1683:31  Id 1001 Salary 9000
+undefined

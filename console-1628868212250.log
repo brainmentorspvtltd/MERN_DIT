@@ -1,0 +1,56 @@
+class Person{
+constructor(name, age){
+    this.name = name;
+    this.age = age;
+}
+print(){
+console.log(`Name ${this.name} Age ${this.age}`);
+}
+}
+class Student extends Person{
+constructor(rollno, marks, name, age){
+    super(name, age); // Parent Cons Call
+    this.rollno = rollno;
+    this.marks = marks;
+}
+print(){
+super.print();// call parent
+console.log(`Rollno ${this.rollno} Marks ${this.marks}`);
+}
+}
+class Employee extends Student{
+constructor(id, salary, rollno, marks, name, age){
+super(rollno, marks, name,age); // call parent constructor
+this.id = id;
+this.salary = salary;
+}
+printEmp(){
+super.print(); // call parent print
+console.log(`Id ${this.id} Salary ${this.salary}`);
+}
+}
+var ram = new Employee(1001, 9000,2,90,"Ram",21);
+ram.printEmp();
+
+VM1129:7 Name Ram Age 21
+VM1129:18 Rollno 2 Marks 90
+VM1129:29 Id 1001 Salary 9000
+undefined
+typeof Employee;
+"function"
+typeof Student;
+"function"
+Employee.prototype;
+Student {constructor: ƒ, printEmp: ƒ}
+Employee.prototype.__proto__;
+Person {constructor: ƒ, print: ƒ}
+Employee.prototype.__proto__ == Student.prototype;
+true
+ram;
+Employee {name: "Ram", age: 21, rollno: 2, marks: 90, id: 1001, …}
+ram.__proto__ === Employee.prototype;
+true
+Employee.prototype.__proto__ == Student.prototype
+true
+Student.prototype.__proto__ === Person.prototype;
+true
