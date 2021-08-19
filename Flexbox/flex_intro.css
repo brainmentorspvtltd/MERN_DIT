@@ -1,0 +1,71 @@
+.row {
+    display: flex;
+    /* justify-content: flex-start; */
+    /* justify-content: flex-end; */
+    /* justify-content: center; */
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+    justify-content: space-evenly;
+    /* align-items: stretch; */
+    /* align-items: flex-end; */
+    align-items: flex-start;
+    /* align-items: center; */
+    /* align-items: baseline; */
+    /* flex-direction: row; */
+    /* flex-direction: row-reverse; */
+}
+
+#section_1 {
+    background-color: #f0f0f0;
+    border: 1px solid red;
+}
+
+#section_1 .col {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+img {
+    width: 100%;
+}
+
+.col-1 {
+    /* flex-basis: 20%; */
+    /* width: 20%; */
+    /* align-self: center; */
+    /* align-self: flex-end; */
+    flex: 1;
+}
+
+.col-2 {
+    /* flex-basis: 45%; */
+    /* width: 45%; */
+    flex: 2;
+}
+
+.col-3 {
+    /* flex-basis: 20%; */
+    /* width: 20%; */
+    flex: 1;
+}
+
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid blue;
+    height: 1000px;
+    /* align-content: center; */
+    /* align-items: flex-end; */
+    align-items: baseline;
+}
+ul li {
+    height: 200px;
+    width: 200px;
+    background-color: red;
+    border: 1px solid #000;
+    /* margin-bottom: 20px; */
+}
