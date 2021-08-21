@@ -1,0 +1,189 @@
+var a = 100;
+var b = 200;
+var c = a + b;
+console.log("C is ",c);
+console.log("Async Call Start ");
+setTimeout(()=>console.log('Timeout called '),5000);
+console.log("Code Ends ");
+VM531:4 C is  300
+VM531:5 Async Call Start 
+VM531:7 Code Ends 
+undefined
+VM531:6 Timeout called 
+var a = 100;
+var b = 200;
+var c = a + b;
+console.log("C is ",c);
+console.log("Async Call Start ");
+setTimeout(()=>console.log('Timeout called '),5000);
+console.log("Code Ends ");
+VM534:4 C is  300
+VM534:5 Async Call Start 
+VM534:7 Code Ends 
+undefined
+VM534:6 Timeout called 
+console.log("code start ");
+function doWork(){
+for(let i = 1; i<=1000000; i++){
+for(let j= 1; j<=10000; j++){
+}
+}
+}
+doWork();
+console.log("Code Ends ");
+VM931:1 code start 
+VM931:9 Code Ends 
+undefined
+console.log("code start ");
+function doWork(){
+for(let i = 1; i<=1000000; i++){
+for(let j= 1; j<=10000; j++){
+}
+}
+}
+doWork();
+console.log("Code Ends ");
+VM935:1 code start 
+VM935:9 Code Ends 
+undefined
+console.log("code start ");
+setTimeout(doWork, 6000);
+function doWork(){
+for(let i = 1; i<=1000000; i++){
+for(let j= 1; j<=10000; j++){
+}
+}
+}
+//doWork();
+console.log("Code Ends ");
+VM996:1 code start 
+VM996:10 Code Ends 
+undefined
+console.log("code start ");
+setTimeout(doWork, 6000);
+function doWork(){
+for(let i = 1; i<=1000000; i++){
+for(let j= 1; j<=10000; j++){
+}
+}
+console.log("DoWork Ends ");
+}
+//doWork();
+console.log("Code Ends ");
+VM1037:1 code start 
+VM1037:11 Code Ends 
+undefined
+VM1037:8 DoWork Ends 
+console.log("code start ");
+var result = doWork();
+console.log("DoWork Ends ", result);
+function doWork(){
+setTimeout(()=>{
+var a= 10;
+var b = 20;
+var c=  a+b;
+console.log("Before Return ", c);
+return c;
+},7000);
+}
+console.log("Code Ends ");
+VM1278:1 code start 
+VM1278:3 DoWork Ends  undefined
+VM1278:13 Code Ends 
+undefined
+VM1278:9 Before Return  30
+function callBack(res){
+    console.log('Result is ', res);
+}
+console.log("code start ");
+doWork(callBack);
+console.log("DoWork Ends ", result);
+function doWork(cb){
+setTimeout(()=>{
+var a= 10;
+var b = 20;
+var c=  a+b;
+//console.log("Before Return ", c);
+//return c;
+cb(c);
+},7000);
+}
+console.log("Code Ends ");
+VM1431:4 code start 
+VM1431:6 DoWork Ends  undefined
+VM1431:17 Code Ends 
+undefined
+VM1431:2 Result is  30
+function callBack(res){
+    console.log('Result is ', res);
+}
+console.log("code start ");
+doWork(callBack);
+console.log("DoWork Ends ");
+function doWork(cb){
+setTimeout(()=>{
+var a= 10;
+var b = 20;
+var c=  a+b;
+//console.log("Before Return ", c);
+//return c;
+cb(c);
+},7000);
+}
+console.log("Code Ends ");
+VM1445:4 code start 
+VM1445:6 DoWork Ends 
+VM1445:17 Code Ends 
+undefined
+VM1445:2 Result is  30
+function callBack(res){
+    console.log('Result is ', res);
+}
+console.log("code start ");
+doWork(callBack);
+console.log("DoWork Ends ", result);
+function doWork(cb){
+setTimeout(()=>{
+var a= 10;
+var b = 20;
+var c=  a+b;
+//console.log("Before Return ", c);
+//return c;
+cb(c);
+},7000);
+}
+console.log("Code Ends ");
+VM1530:4 code start 
+VM1530:6 DoWork Ends  undefined
+VM1530:17 Code Ends 
+undefined
+VM1530:2 Result is  30
+function callBack2(res){
+console.log("Call Back2 Result ",res);
+}
+function callBack(res){
+    console.log('Result is ', res);
+    setTimeout(()=>{
+    callBack2("Calling CB2 From CB1");
+}, 5000);
+}
+console.log("code start ");
+doWork(callBack);
+console.log("DoWork Ends ", result);
+function doWork(cb){
+setTimeout(()=>{
+var a= 10;
+var b = 20;
+var c=  a+b;
+//console.log("Before Return ", c);
+//return c;
+cb(c);
+},7000);
+}
+console.log("Code Ends ");
+VM1724:10 code start 
+VM1724:12 DoWork Ends  undefined
+VM1724:23 Code Ends 
+undefined
+VM1724:5 Result is  30
+VM1724:2 Call Back2 Result  Calling CB2 From CB1

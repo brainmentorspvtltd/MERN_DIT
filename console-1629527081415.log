@@ -1,0 +1,66 @@
+const promise = doWork();
+console.log('Promise is ',promise);
+promise.then(data=>console.log(data)).catch(err=>console.log(err));
+console.log('Code Ends ', promise);
+function doWork(){
+const promise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+var a = 100;
+var b = 200;
+var c = a + b;
+resolve(c);
+},7000);
+});
+return promise;
+}
+VM798:2 Promise is  Promise {<pending>}
+VM798:4 Code Ends  Promise {<pending>}
+undefined
+VM798:3 300
+promise;
+Promise {<fulfilled>: 300}
+const promise = doWork();
+console.log('Promise is ',promise);
+promise.then(data=>console.log(data)).catch(err=>console.log(err));
+console.log('Code Ends ', promise);
+function doWork(){
+const promise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+var a = 100;
+var b = 200;
+var c = a + b;
+resolve(c);
+},7000);
+});
+return promise;
+}
+VM825:2 Promise is  Promise {<pending>}
+VM825:4 Code Ends  Promise {<pending>}
+undefined
+VM825:3 300
+const promise = doWork();
+console.log('Promise is ',promise);
+promise.then(data=>console.log(data)).catch(err=>console.log(err));
+console.log('Code Ends ', promise);
+function doWork(){
+const promise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+var a = 10;
+var b = 200;
+var c = a + b;
+if(c>=300){
+resolve(c);
+}
+else{
+reject("Error Value is Small ");
+}
+},7000);
+});
+return promise;
+}
+VM902:2 Promise is  Promise {<pending>}
+VM902:4 Code Ends  Promise {<pending>}
+undefined
+VM902:3 Error Value is Small 
+promise
+Promise {<rejected>: "Error Value is Small "}

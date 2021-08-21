@@ -1,0 +1,212 @@
+function cube(num){
+const promise = new Promise((resolve, reject)=>{    
+setTimeout(()=>resolve(num**3), 7000);
+});
+return promise;
+}
+undefined
+const pr = Promise.all([cube(3), cube(5), cube(6)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+Promise {<pending>}
+VM625:2 (3) [27, 125, 216]
+function cube(num){
+console.log('Cube Call ',num);
+const promise = new Promise((resolve, reject)=>{    
+setTimeout(()=>resolve(num**3), 7000);
+});
+return promise;
+}
+undefined
+const pr = Promise.all([cube(3), cube(5), cube(6)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM687:2 Cube Call  3
+VM687:2 Cube Call  5
+VM687:2 Cube Call  6
+Promise {<pending>}
+VM691:2 (3) [27, 125, 216]
+function cube(num){
+console.log('Cube Call ',num);
+const promise = new Promise((resolve, reject)=>{    
+setTimeout(()=>{
+if(num>5){
+reject('Rejected Due to '+num);
+}else{
+resolve(num**3);
+}
+}, 7000);
+});
+return promise;
+}
+undefined
+const pr = Promise.all([cube(3), cube(5), cube(6)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM808:2 Cube Call  3
+VM808:2 Cube Call  5
+VM808:2 Cube Call  6
+Promise {<pending>}
+VM812:2 Rejected Due to 6
+const pr = Promise.allSettled([cube(3), cube(5), cube(6)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM808:2 Cube Call  3
+VM808:2 Cube Call  5
+VM808:2 Cube Call  6
+Promise {<pending>}
+VM822:2 (3) [{…}, {…}, {…}]0: {status: "fulfilled", value: 27}1: {status: "fulfilled", value: 125}2: {status: "rejected", reason: "Rejected Due to 6"}length: 3[[Prototype]]: Array(0)
+const pr = Promise.race([cube(3), cube(5), cube(6)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM808:2 Cube Call  3
+VM808:2 Cube Call  5
+VM808:2 Cube Call  6
+Promise {<pending>}
+VM833:2 27
+const pr = Promise.race([cube(3), cube(5), cube(6)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM808:2 Cube Call  3
+VM808:2 Cube Call  5
+VM808:2 Cube Call  6
+Promise {<pending>}
+VM836:2 27
+function cube(num, time){
+console.log('Cube Call ',num);
+const promise = new Promise((resolve, reject)=>{    
+setTimeout(()=>{
+if(num>5){
+reject('Rejected Due to '+num);
+}else{
+resolve(num**3);
+}
+}, time);
+});
+return promise;
+}
+undefined
+const pr = Promise.race([cube(3,9000), cube(5,1000), cube(6,3000)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM913:2 Cube Call  3
+VM913:2 Cube Call  5
+VM913:2 Cube Call  6
+Promise {<pending>}
+VM949:2 125
+const pr = Promise.allSettled([cube(3), cube(5), cube(6)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM913:2 Cube Call  3
+VM913:2 Cube Call  5
+VM913:2 Cube Call  6
+Promise {<pending>}
+VM955:2 (3) [{…}, {…}, {…}]
+const pr = Promise.allSettled([cube(3,9000), cube(5,1000), cube(6,3000)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM913:2 Cube Call  3
+VM913:2 Cube Call  5
+VM913:2 Cube Call  6
+Promise {<pending>}
+VM990:2 (3) [{…}, {…}, {…}]0: {status: "fulfilled", value: 27}1: {status: "fulfilled", value: 125}2: {status: "rejected", reason: "Rejected Due to 6"}length: 3[[Prototype]]: Array(0)
+const pr = Promise.all([cube(3,9000), cube(5,1000), cube(6,3000)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM913:2 Cube Call  3
+VM913:2 Cube Call  5
+VM913:2 Cube Call  6
+Promise {<pending>}
+VM1009:2 Rejected Due to 6
+const pr = Promise.all([cube(3,29000), cube(5,1000), cube(6,3000)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM913:2 Cube Call  3
+VM913:2 Cube Call  5
+VM913:2 Cube Call  6
+Promise {<pending>}
+VM1016:2 Rejected Due to 6
+const pr = Promise.allSettled([cube(3,19000), cube(5,1000), cube(6,3000)]);
+pr.then(result=>console.log(result)).catch(err=>console.log(err));
+VM913:2 Cube Call  3
+VM913:2 Cube Call  5
+VM913:2 Cube Call  6
+Promise {<pending>}
+VM1025:2 (3) [{…}, {…}, {…}]0: {status: "fulfilled", value: 27}1: {status: "fulfilled", value: 125}2: {status: "rejected", reason: "Rejected Due to 6"}length: 3[[Prototype]]: Array(0)
+async function sum(){
+    let r1 = await cube(3);
+    let r2 = await cube(r1);
+    let r3 = await cube(r2);
+    return r1 + r2 + r3;
+}
+undefined
+async function show(){
+return 10;
+}
+undefined
+show();
+Promise {<fulfilled>: 10}
+ function show(){
+    await cube(3);
+return 10;
+}
+VM1297:2 Uncaught SyntaxError: await is only valid in async functions and the top level bodies of modules
+function cube(num, time){
+console.log('Cube Call ',num);
+const promise = new Promise((resolve, reject)=>{    
+setTimeout(()=>{
+if(num>500000000000){
+reject('Rejected Due to '+num);
+}else{
+resolve(num**3);
+}
+}, time);
+});
+return promise;
+}
+undefined
+async function sum(){
+    let r1 = await cube(3);
+    let r2 = await cube(r1);
+    let r3 = await cube(r2);
+    return r1 + r2 + r3;
+}
+undefined
+const p = sum();
+VM1333:2 Cube Call  3
+undefined
+VM1333:2 Cube Call  27
+VM1333:2 Cube Call  19683
+p
+Promise {<fulfilled>: 7625597504697}
+const p = sum();
+p;
+VM1333:2 Cube Call  3
+Promise {<pending>}
+VM1333:2 Cube Call  27
+VM1333:2 Cube Call  19683
+async function sum(){
+    let r1 = await cube(3,2000);
+    let r2 = await cube(r1,5000);
+    let r3 = await cube(r2,7000);
+    return r1 + r2 + r3;
+}
+undefined
+const p = sum();
+p;
+VM1333:2 Cube Call  3
+Promise {<pending>}
+VM1333:2 Cube Call  27
+VM1333:2 Cube Call  19683
+p.then(data=>console.log(data)).catch(err=>console.log(err));
+VM1650:1 7625597504697
+Promise {<fulfilled>: undefined}
+async function sum(){
+    let r1, r2, r3;
+    try{
+     r1 = await cube(3,2000);
+     r2 = await cube(r1,5000);
+     r3 = await cube(r2,7000);
+    }
+    catch(err){
+        console.log(err);
+    }
+    return r1 + r2 + r3;
+}
+undefined
+const p = sum();
+p.then(data=>console.log(data)).catch(err=>console.log(err));
+VM1333:2 Cube Call  3
+Promise {<pending>}
+VM1333:2 Cube Call  27
+VM1333:2 Cube Call  19683
+VM1780:2 7625597504697
