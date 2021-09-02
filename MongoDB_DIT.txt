@@ -1,0 +1,2126 @@
+Types of data
+- Structured data - tables (row x col)
+- Unstructured data - Images, Raw text, audio...
+- Semi-structured - JSON, XML
+
+No SQL
+- Not Only SQL
+
+Key value based
+- based on amazon's dynamo
+  - riak, redis
+
+Column Based
+- based on google big table
+  - HBase, Cassandra, HyperTable
+
+Document Oriented
+- JSON, XML
+  - Mongo DB
+
+Graph Based
+- Based on graph data structured
+  - Neo4J
+
+MongoDB
+- create a database and use it
+
+- create the collections in database
+
+  - createCollection
+  - create on fly
+
+Capped Collections
+capped : true  - fixed size collection
+max : 10
+size : max size in bytes
+
+CRUD
+
+Create
+- insert
+- insertOne
+- insertMany
+Read
+- find
+- findOne
+Update
+- updateOne
+- updateMany
+- replaceOne
+Delete
+- deleteOne
+- deleteMany
+- remove
+
+Projection
+
+Query Selectors
+- Comparison
+- Array
+- Logical
+- Element
+- Comments
+- Geospatial
+- Evaluation
+
+
+Comparison Operator
+- $eq
+- $gt
+- $lt
+- $gte
+- $lte
+- $in
+- $ne
+- $nin
+
+Logical Operators
+- $and
+- $or
+- $not
+- $nor
+
+Element Operators
+- $exists
+- $type
+
+Evaluation Operators
+- $expr
+- $jsonschema
+- $text
+- $regex
+- $where
+
+Aggregate Pipeline
+
+mongoimport -jsonArray -db db_name -collection collection_name -file file_location
+
+
+
+
+
+> show dbs
+Flipkart      0.000GB
+TCS           0.000GB
+admin         0.000GB
+amazon_db     0.000GB
+config        0.000GB
+covid_db      0.000GB
+dataTypes_db  0.000GB
+emp_db        0.000GB
+local         0.000GB
+movies_db     0.000GB
+new_db        0.000GB
+shopping      0.000GB
+testDB        0.000GB
+> use db_1
+switched to db db_1
+> db.createCollection("demo")
+{ "ok" : 1 }
+> show collections
+demo
+> show dbs
+Flipkart      0.000GB
+TCS           0.000GB
+admin         0.000GB
+amazon_db     0.000GB
+config        0.000GB
+covid_db      0.000GB
+dataTypes_db  0.000GB
+db_1          0.000GB
+emp_db        0.000GB
+local         0.000GB
+movies_db     0.000GB
+new_db        0.000GB
+shopping      0.000GB
+testDB        0.000GB
+> db.drop()
+uncaught exception: TypeError: db.drop is not a function :
+@(shell):1:1
+> db.drop
+db_1.drop
+> show dbs
+Flipkart      0.000GB
+TCS           0.000GB
+admin         0.000GB
+amazon_db     0.000GB
+config        0.000GB
+covid_db      0.000GB
+dataTypes_db  0.000GB
+db_1          0.000GB
+emp_db        0.000GB
+local         0.000GB
+movies_db     0.000GB
+new_db        0.000GB
+shopping      0.000GB
+testDB        0.000GB
+> use db_1
+switched to db db_1
+> show collections
+demo
+> db.demo_2.insertOne({"id":101, "name":"John","dept":"IT"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6130cd5142d5725885555f14")
+}
+> show collections
+demo
+demo_2
+> use netflix
+switched to db netflix
+> db.createCollection("movies")
+{ "ok" : 1 }
+> db.createCollection("top_10", {capped : true, max : 10}})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:55
+> db.createCollection("top_10", {capped : true, max : 10})
+{
+        "ok" : 0,
+        "errmsg" : "the 'size' field is required when 'capped' is true",
+        "code" : 72,
+        "codeName" : "InvalidOptions"
+}
+> db.createCollection("top_10", {capped : true, max : 10, size : 10000})
+{ "ok" : 1 }
+> show collections
+movies
+top_10
+> db.top_10.insertOne({m_id : 101, m_name : "Thor", m_rating : 7.8})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6130ced242d5725885555f15")
+}
+> db.top_10.insertOne({m_id : 102, m_name : "Avengers", m_rating : 7.9})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6130cee242d5725885555f16")
+}
+> db.top_10.insertOne({m_id : 103, m_name : "Ironman", m_rating : 8.5})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6130cef142d5725885555f17")
+}
+> db.top_10.insertOne({m_id : 104, m_name : "Captain America", m_rating : 8.2})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6130cf0342d5725885555f18")
+}
+> db.top_10.insertOne({m_id : 105, m_name : "Spiderman", m_rating : 8.7})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6130cf1242d5725885555f19")
+}
+> db.top_10.insertMany([
+...     {
+...         "m_id" : 106,
+...         "m_name" : "Hulk",
+...         "m_rating" : 6.8
+...     },
+...     {
+...         "m_id" : 107,
+...         "m_name" : "Superman",
+...         "m_rating" : 8.7
+...     },
+...     {
+...         "m_id" : 108,
+...         "m_name" : "Ironman 2",
+...         "m_rating" : 6.8
+...     },
+...     {
+...         "m_id" : 109,
+...         "m_name" : "Hulk 2",
+...         "m_rating" : 6.8
+...     },
+...     {
+...         "m_id" : 110,
+...         "m_name" : "Spiderman 2",
+...         "m_rating" : 6.8
+...     },
+... ])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("6130cfba42d5725885555f1a"),
+                ObjectId("6130cfba42d5725885555f1b"),
+                ObjectId("6130cfba42d5725885555f1c"),
+                ObjectId("6130cfba42d5725885555f1d"),
+                ObjectId("6130cfba42d5725885555f1e")
+        ]
+}
+> db.top_10.find().count()
+10
+> db.top_10.find()
+{ "_id" : ObjectId("6130ced242d5725885555f15"), "m_id" : 101, "m_name" : "Thor", "m_rating" : 7.8 }
+{ "_id" : ObjectId("6130cee242d5725885555f16"), "m_id" : 102, "m_name" : "Avengers", "m_rating" : 7.9 }
+{ "_id" : ObjectId("6130cef142d5725885555f17"), "m_id" : 103, "m_name" : "Ironman", "m_rating" : 8.5 }
+{ "_id" : ObjectId("6130cf0342d5725885555f18"), "m_id" : 104, "m_name" : "Captain America", "m_rating" : 8.2 }
+{ "_id" : ObjectId("6130cf1242d5725885555f19"), "m_id" : 105, "m_name" : "Spiderman", "m_rating" : 8.7 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1a"), "m_id" : 106, "m_name" : "Hulk", "m_rating" : 6.8 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1b"), "m_id" : 107, "m_name" : "Superman", "m_rating" : 8.7 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1c"), "m_id" : 108, "m_name" : "Ironman 2", "m_rating" : 6.8 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1d"), "m_id" : 109, "m_name" : "Hulk 2", "m_rating" : 6.8 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1e"), "m_id" : 110, "m_name" : "Spiderman 2", "m_rating" : 6.8 }
+> db.top_10.find().pretty()
+{
+        "_id" : ObjectId("6130ced242d5725885555f15"),
+        "m_id" : 101,
+        "m_name" : "Thor",
+        "m_rating" : 7.8
+}
+{
+        "_id" : ObjectId("6130cee242d5725885555f16"),
+        "m_id" : 102,
+        "m_name" : "Avengers",
+        "m_rating" : 7.9
+}
+{
+        "_id" : ObjectId("6130cef142d5725885555f17"),
+        "m_id" : 103,
+        "m_name" : "Ironman",
+        "m_rating" : 8.5
+}
+{
+        "_id" : ObjectId("6130cf0342d5725885555f18"),
+        "m_id" : 104,
+        "m_name" : "Captain America",
+        "m_rating" : 8.2
+}
+{
+        "_id" : ObjectId("6130cf1242d5725885555f19"),
+        "m_id" : 105,
+        "m_name" : "Spiderman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1a"),
+        "m_id" : 106,
+        "m_name" : "Hulk",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1b"),
+        "m_id" : 107,
+        "m_name" : "Superman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1c"),
+        "m_id" : 108,
+        "m_name" : "Ironman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1d"),
+        "m_id" : 109,
+        "m_name" : "Hulk 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1e"),
+        "m_id" : 110,
+        "m_name" : "Spiderman 2",
+        "m_rating" : 6.8
+}
+> db.top_10.insertOne({m_id : 111, m_name : "X-Men", m_rating : 8.8})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6130d06542d5725885555f1f")
+}
+> db.top_10.find().pretty()
+{
+        "_id" : ObjectId("6130cee242d5725885555f16"),
+        "m_id" : 102,
+        "m_name" : "Avengers",
+        "m_rating" : 7.9
+}
+{
+        "_id" : ObjectId("6130cef142d5725885555f17"),
+        "m_id" : 103,
+        "m_name" : "Ironman",
+        "m_rating" : 8.5
+}
+{
+        "_id" : ObjectId("6130cf0342d5725885555f18"),
+        "m_id" : 104,
+        "m_name" : "Captain America",
+        "m_rating" : 8.2
+}
+{
+        "_id" : ObjectId("6130cf1242d5725885555f19"),
+        "m_id" : 105,
+        "m_name" : "Spiderman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1a"),
+        "m_id" : 106,
+        "m_name" : "Hulk",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1b"),
+        "m_id" : 107,
+        "m_name" : "Superman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1c"),
+        "m_id" : 108,
+        "m_name" : "Ironman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1d"),
+        "m_id" : 109,
+        "m_name" : "Hulk 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1e"),
+        "m_id" : 110,
+        "m_name" : "Spiderman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130d06542d5725885555f1f"),
+        "m_id" : 111,
+        "m_name" : "X-Men",
+        "m_rating" : 8.8
+}
+> db.top_10.find().count()
+10
+> db.top_10.find({m_id : 110})
+{ "_id" : ObjectId("6130cfba42d5725885555f1e"), "m_id" : 110, "m_name" : "Spiderman 2", "m_rating" : 6.8 }
+> db.top_10.find({m_id : 110}).pretty()
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1e"),
+        "m_id" : 110,
+        "m_name" : "Spiderman 2",
+        "m_rating" : 6.8
+}
+> db.top_10.find()
+{ "_id" : ObjectId("6130cee242d5725885555f16"), "m_id" : 102, "m_name" : "Avengers", "m_rating" : 7.9 }
+{ "_id" : ObjectId("6130cef142d5725885555f17"), "m_id" : 103, "m_name" : "Ironman", "m_rating" : 8.5 }
+{ "_id" : ObjectId("6130cf0342d5725885555f18"), "m_id" : 104, "m_name" : "Captain America", "m_rating" : 8.2 }
+{ "_id" : ObjectId("6130cf1242d5725885555f19"), "m_id" : 105, "m_name" : "Spiderman", "m_rating" : 8.7 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1a"), "m_id" : 106, "m_name" : "Hulk", "m_rating" : 6.8 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1b"), "m_id" : 107, "m_name" : "Superman", "m_rating" : 8.7 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1c"), "m_id" : 108, "m_name" : "Ironman 2", "m_rating" : 6.8 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1d"), "m_id" : 109, "m_name" : "Hulk 2", "m_rating" : 6.8 }
+{ "_id" : ObjectId("6130cfba42d5725885555f1e"), "m_id" : 110, "m_name" : "Spiderman 2", "m_rating" : 6.8 }
+{ "_id" : ObjectId("6130d06542d5725885555f1f"), "m_id" : 111, "m_name" : "X-Men", "m_rating" : 8.8 }
+> db.top_10.find().pretty()
+{
+        "_id" : ObjectId("6130cee242d5725885555f16"),
+        "m_id" : 102,
+        "m_name" : "Avengers",
+        "m_rating" : 7.9
+}
+{
+        "_id" : ObjectId("6130cef142d5725885555f17"),
+        "m_id" : 103,
+        "m_name" : "Ironman",
+        "m_rating" : 8.5
+}
+{
+        "_id" : ObjectId("6130cf0342d5725885555f18"),
+        "m_id" : 104,
+        "m_name" : "Captain America",
+        "m_rating" : 8.2
+}
+{
+        "_id" : ObjectId("6130cf1242d5725885555f19"),
+        "m_id" : 105,
+        "m_name" : "Spiderman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1a"),
+        "m_id" : 106,
+        "m_name" : "Hulk",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1b"),
+        "m_id" : 107,
+        "m_name" : "Superman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1c"),
+        "m_id" : 108,
+        "m_name" : "Ironman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1d"),
+        "m_id" : 109,
+        "m_name" : "Hulk 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1e"),
+        "m_id" : 110,
+        "m_name" : "Spiderman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130d06542d5725885555f1f"),
+        "m_id" : 111,
+        "m_name" : "X-Men",
+        "m_rating" : 8.8
+}
+> db.top_10.find().count()
+10
+> db.top_10.find().pretty()
+{
+        "_id" : ObjectId("6130cee242d5725885555f16"),
+        "m_id" : 102,
+        "m_name" : "Avengers",
+        "m_rating" : 7.9
+}
+{
+        "_id" : ObjectId("6130cef142d5725885555f17"),
+        "m_id" : 103,
+        "m_name" : "Ironman",
+        "m_rating" : 8.5
+}
+{
+        "_id" : ObjectId("6130cf0342d5725885555f18"),
+        "m_id" : 104,
+        "m_name" : "Captain America",
+        "m_rating" : 8.2
+}
+{
+        "_id" : ObjectId("6130cf1242d5725885555f19"),
+        "m_id" : 105,
+        "m_name" : "Spiderman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1a"),
+        "m_id" : 106,
+        "m_name" : "Hulk",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1b"),
+        "m_id" : 107,
+        "m_name" : "Superman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1c"),
+        "m_id" : 108,
+        "m_name" : "Ironman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1d"),
+        "m_id" : 109,
+        "m_name" : "Hulk 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1e"),
+        "m_id" : 110,
+        "m_name" : "Spiderman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130d06542d5725885555f1f"),
+        "m_id" : 111,
+        "m_name" : "X-Men",
+        "m_rating" : 8.8
+}
+> db.top_10.findOne()
+{
+        "_id" : ObjectId("6130cee242d5725885555f16"),
+        "m_id" : 102,
+        "m_name" : "Avengers",
+        "m_rating" : 7.9
+}
+> db.top_10.findOne().count()
+uncaught exception: TypeError: db.top_10.findOne(...).count is not a function :
+@(shell):1:1
+> db.top_10.findOne().pretty()
+uncaught exception: TypeError: db.top_10.findOne(...).pretty is not a function :
+@(shell):1:1
+> show collections
+movies
+top_10
+> db.top_10.find().pretty()
+{
+        "_id" : ObjectId("6130cee242d5725885555f16"),
+        "m_id" : 102,
+        "m_name" : "Avengers",
+        "m_rating" : 7.9
+}
+{
+        "_id" : ObjectId("6130cef142d5725885555f17"),
+        "m_id" : 103,
+        "m_name" : "Ironman",
+        "m_rating" : 8.5
+}
+{
+        "_id" : ObjectId("6130cf0342d5725885555f18"),
+        "m_id" : 104,
+        "m_name" : "Captain America",
+        "m_rating" : 8.2
+}
+{
+        "_id" : ObjectId("6130cf1242d5725885555f19"),
+        "m_id" : 105,
+        "m_name" : "Spiderman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1a"),
+        "m_id" : 106,
+        "m_name" : "Hulk",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1b"),
+        "m_id" : 107,
+        "m_name" : "Superman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1c"),
+        "m_id" : 108,
+        "m_name" : "Ironman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1d"),
+        "m_id" : 109,
+        "m_name" : "Hulk 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1e"),
+        "m_id" : 110,
+        "m_name" : "Spiderman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130d06542d5725885555f1f"),
+        "m_id" : 111,
+        "m_name" : "X-Men",
+        "m_rating" : 8.8
+}
+> db.top_10.find({}, {m_name:1, m_rating:1}).pretty()
+{
+        "_id" : ObjectId("6130cee242d5725885555f16"),
+        "m_name" : "Avengers",
+        "m_rating" : 7.9
+}
+{
+        "_id" : ObjectId("6130cef142d5725885555f17"),
+        "m_name" : "Ironman",
+        "m_rating" : 8.5
+}
+{
+        "_id" : ObjectId("6130cf0342d5725885555f18"),
+        "m_name" : "Captain America",
+        "m_rating" : 8.2
+}
+{
+        "_id" : ObjectId("6130cf1242d5725885555f19"),
+        "m_name" : "Spiderman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1a"),
+        "m_name" : "Hulk",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1b"),
+        "m_name" : "Superman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1c"),
+        "m_name" : "Ironman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1d"),
+        "m_name" : "Hulk 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1e"),
+        "m_name" : "Spiderman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130d06542d5725885555f1f"),
+        "m_name" : "X-Men",
+        "m_rating" : 8.8
+}
+> db.top_10.find({}, {m_name:1, m_rating:1, _id:-1}).pretty()
+{
+        "_id" : ObjectId("6130cee242d5725885555f16"),
+        "m_name" : "Avengers",
+        "m_rating" : 7.9
+}
+{
+        "_id" : ObjectId("6130cef142d5725885555f17"),
+        "m_name" : "Ironman",
+        "m_rating" : 8.5
+}
+{
+        "_id" : ObjectId("6130cf0342d5725885555f18"),
+        "m_name" : "Captain America",
+        "m_rating" : 8.2
+}
+{
+        "_id" : ObjectId("6130cf1242d5725885555f19"),
+        "m_name" : "Spiderman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1a"),
+        "m_name" : "Hulk",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1b"),
+        "m_name" : "Superman",
+        "m_rating" : 8.7
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1c"),
+        "m_name" : "Ironman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1d"),
+        "m_name" : "Hulk 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130cfba42d5725885555f1e"),
+        "m_name" : "Spiderman 2",
+        "m_rating" : 6.8
+}
+{
+        "_id" : ObjectId("6130d06542d5725885555f1f"),
+        "m_name" : "X-Men",
+        "m_rating" : 8.8
+}
+> db.top_10.find({}, {m_name:1, m_rating:1, _id:0}).pretty()
+{ "m_name" : "Avengers", "m_rating" : 7.9 }
+{ "m_name" : "Ironman", "m_rating" : 8.5 }
+{ "m_name" : "Captain America", "m_rating" : 8.2 }
+{ "m_name" : "Spiderman", "m_rating" : 8.7 }
+{ "m_name" : "Hulk", "m_rating" : 6.8 }
+{ "m_name" : "Superman", "m_rating" : 8.7 }
+{ "m_name" : "Ironman 2", "m_rating" : 6.8 }
+{ "m_name" : "Hulk 2", "m_rating" : 6.8 }
+{ "m_name" : "Spiderman 2", "m_rating" : 6.8 }
+{ "m_name" : "X-Men", "m_rating" : 8.8 }
+> db.top_10.find({m_rating : 8.0}, {m_name:1, m_rating:1, _id:0}).pretty()
+> db.top_10.find({m_rating : {$eq : 8.0}}, {m_name:1, m_rating:1, _id:0}).pretty()
+> db.top_10.find({m_rating : {$gt : 8.0}}, {m_name:1, m_rating:1, _id:0}).pretty()
+{ "m_name" : "Ironman", "m_rating" : 8.5 }
+{ "m_name" : "Captain America", "m_rating" : 8.2 }
+{ "m_name" : "Spiderman", "m_rating" : 8.7 }
+{ "m_name" : "Superman", "m_rating" : 8.7 }
+{ "m_name" : "X-Men", "m_rating" : 8.8 }
+> db.top_10.find({m_rating : {$lt : 8.0}}, {m_name:1, m_rating:1, _id:0}).pretty()
+{ "m_name" : "Avengers", "m_rating" : 7.9 }
+{ "m_name" : "Hulk", "m_rating" : 6.8 }
+{ "m_name" : "Ironman 2", "m_rating" : 6.8 }
+{ "m_name" : "Hulk 2", "m_rating" : 6.8 }
+{ "m_name" : "Spiderman 2", "m_rating" : 6.8 }
+> db.top_10.find({m_rating : {$in : [8.0,8.1,8.2,8.3,8.4]}}, {m_name:1, m_rating:1, _id:0}).pretty()
+{ "m_name" : "Captain America", "m_rating" : 8.2 }
+> db.top_10.find({m_rating : {$nin : [8.0,8.1,8.2,8.3,8.4]}}, {m_name:1, m_rating:1, _id:0}).pretty()
+{ "m_name" : "Avengers", "m_rating" : 7.9 }
+{ "m_name" : "Ironman", "m_rating" : 8.5 }
+{ "m_name" : "Spiderman", "m_rating" : 8.7 }
+{ "m_name" : "Hulk", "m_rating" : 6.8 }
+{ "m_name" : "Superman", "m_rating" : 8.7 }
+{ "m_name" : "Ironman 2", "m_rating" : 6.8 }
+{ "m_name" : "Hulk 2", "m_rating" : 6.8 }
+{ "m_name" : "Spiderman 2", "m_rating" : 6.8 }
+{ "m_name" : "X-Men", "m_rating" : 8.8 }
+> use onlinshopping
+switched to db onlinshopping
+> show collections
+> use shopping
+switched to db shopping
+> show collections
+customers
+products
+sales
+stores
+testCollection
+users
+> db.products.find().pretty()
+{
+        "_id" : ObjectId("6115ec83380c479ddaa2166c"),
+        "p_name" : "Apple Iphone 12",
+        "p_category" : "Mobile",
+        "p_brand" : "Apple",
+        "p_price" : 78000,
+        "p_color" : [
+                "gold",
+                "silver",
+                "gray",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 6,
+                "front_camera" : 12,
+                "rear_camera" : 64,
+                "screen_size" : 15.49
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ecdb380c479ddaa2166d"),
+        "p_name" : "One Plus Nord",
+        "p_category" : "Mobile",
+        "p_brand" : "One Plus",
+        "p_price" : 28000,
+        "p_color" : [
+                "silver",
+                "blue",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 64,
+                "ram" : 6,
+                "front_camera" : 18,
+                "rear_camera" : 50,
+                "screen_size" : 14.4
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ed1e380c479ddaa2166e"),
+        "p_name" : "Apple Iphone 12 pro",
+        "p_category" : "Mobile",
+        "p_brand" : "Apple",
+        "p_price" : 98000,
+        "p_color" : [
+                "gold",
+                "silver",
+                "black"
+        ],
+        "p_rating" : 4,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 8,
+                "front_camera" : 24,
+                "rear_camera" : 108,
+                "screen_size" : 15.49
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ed8f380c479ddaa2166f"),
+        "p_name" : "Apple Macbook Pro M1",
+        "p_category" : "Laptop",
+        "p_brand" : "Apple",
+        "p_price" : 158000,
+        "p_color" : [
+                "gray",
+                "silver"
+        ],
+        "p_rating" : 4.8,
+        "p_description" : {
+                "memory" : 256,
+                "ram" : 8,
+                "screen_size" : 33.78,
+                "processor" : "Mac M1"
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ede5380c479ddaa21670"),
+        "p_name" : "Asus Zenbook 13",
+        "p_category" : "Laptop",
+        "p_brand" : "Asus",
+        "p_price" : 88000,
+        "p_color" : [
+                "gray",
+                "silver",
+                "blue"
+        ],
+        "p_rating" : 4.3,
+        "p_description" : {
+                "memory" : 512,
+                "ram" : 16,
+                "screen_size" : 33.78,
+                "processor" : "Intel Core i7"
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+> db.products.findOne()
+{
+        "_id" : ObjectId("6115ec83380c479ddaa2166c"),
+        "p_name" : "Apple Iphone 12",
+        "p_category" : "Mobile",
+        "p_brand" : "Apple",
+        "p_price" : 78000,
+        "p_color" : [
+                "gold",
+                "silver",
+                "gray",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 6,
+                "front_camera" : 12,
+                "rear_camera" : 64,
+                "screen_size" : 15.49
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+> db.products.find({p_brand : {$in : ["Apple", "Samsung"]}}, {_id : 0, p_name : 1, p_price : 1})
+{ "p_name" : "Apple Iphone 12", "p_price" : 78000 }
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000 }
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000 }
+> db.products.find({p_rating : {$gte : 4.5}}, {_id : 0, p_name : 1, p_price : 1})
+{ "p_name" : "Apple Iphone 12", "p_price" : 78000 }
+{ "p_name" : "One Plus Nord", "p_price" : 28000 }
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000 }
+> db.products.find({p_color : "gold"}, {_id : 0, p_name : 1, p_price : 1})
+{ "p_name" : "Apple Iphone 12", "p_price" : 78000 }
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000 }
+> db.products.find({p_color : ["gold"]}, {_id : 0, p_name : 1, p_price : 1})
+> db.products.find({p_color : ["gold","silver"]}, {_id : 0, p_name : 1, p_price : 1})
+> db.products.find({p_color : ["gold","silver","black"]}, {_id : 0, p_name : 1, p_price : 1})
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000 }
+> db.products.find({p_color : ["gold"]}, {_id : 0, p_name : 1, p_price : 1})
+> db.products.find({"p_description.ram" : {$gt : 6}}, {_id : 0, p_name : 1, p_price : 1})
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000 }
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000 }
+{ "p_name" : "Asus Zenbook 13", "p_price" : 88000 }
+> db.products.find({"p_description.ram" : {$gt : 6}}, {_id : 0, p_name : 1, p_price : 1, p_description : 1})
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000, "p_description" : { "memory" : 128, "ram" : 8, "front_camera" : 24, "rear_camera" : 108, "screen_size" : 15.49 } }
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000, "p_description" : { "memory" : 256, "ram" : 8, "screen_size" : 33.78, "processor" : "Mac M1" } }
+{ "p_name" : "Asus Zenbook 13", "p_price" : 88000, "p_description" : { "memory" : 512, "ram" : 16, "screen_size" : 33.78, "processor" : "Intel Core i7" } }
+> db.products.find({"p_description.ram" : {$gt : 6}}, {_id : 0, p_name : 1, p_price : 1, p_description : 1}).pretty()
+{
+        "p_name" : "Apple Iphone 12 pro",
+        "p_price" : 98000,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 8,
+                "front_camera" : 24,
+                "rear_camera" : 108,
+                "screen_size" : 15.49
+        }
+}
+{
+        "p_name" : "Apple Macbook Pro M1",
+        "p_price" : 158000,
+        "p_description" : {
+                "memory" : 256,
+                "ram" : 8,
+                "screen_size" : 33.78,
+                "processor" : "Mac M1"
+        }
+}
+{
+        "p_name" : "Asus Zenbook 13",
+        "p_price" : 88000,
+        "p_description" : {
+                "memory" : 512,
+                "ram" : 16,
+                "screen_size" : 33.78,
+                "processor" : "Intel Core i7"
+        }
+}
+> db.products.find({$or : [{p_rating : {$gt : 4.5}}, {p_price : {$lt : 45000}}]}, {_id : 0, p_name, p_rating, p_price}).pretty()
+uncaught exception: ReferenceError: p_name is not defined :
+@(shell):1:91
+> db.products.find({$or : [{p_rating : {$gt : 4.5}}, {p_price : {$lt : 45000}}]}, {_id : 0, p_name : 1, p_rating : 1, p_price : 1}).pretty()
+{ "p_name" : "One Plus Nord", "p_price" : 28000, "p_rating" : 4.5 }
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000, "p_rating" : 4.8 }
+> db.products.find({$and : [{p_rating : {$gt : 4.5}}, {p_price : {$lt : 45000}}]}, {_id : 0, p_name : 1, p_rating : 1, p_price : 1}).pretty()
+> db.products.find({$and : [{p_rating : {$gte : 4.5}}, {p_price : {$lt : 45000}}]}, {_id : 0, p_name : 1, p_rating : 1, p_price : 1}).pretty()
+{ "p_name" : "One Plus Nord", "p_price" : 28000, "p_rating" : 4.5 }
+> db.products.find({$or : [{p_rating : {$gt : 4.5}}, {p_price : {$lt : 45000}}]}, {_id : 0, p_name : 1, p_rating : 1, p_price : 1}).pretty()
+{ "p_name" : "One Plus Nord", "p_price" : 28000, "p_rating" : 4.5 }
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000, "p_rating" : 4.8 }
+> db.products.find({$nor : [{p_rating : {$gt : 4.5}}, {p_price : {$lt : 45000}}]}, {_id : 0, p_name : 1, p_rating : 1, p_price : 1}).pretty()
+{ "p_name" : "Apple Iphone 12", "p_price" : 78000, "p_rating" : 4.5 }
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000, "p_rating" : 4 }
+{ "p_name" : "Asus Zenbook 13", "p_price" : 88000, "p_rating" : 4.3 }
+> db.products.find({p_rating : {$not : {$gt : 4.5}}}).pretty()
+{
+        "_id" : ObjectId("6115ec83380c479ddaa2166c"),
+        "p_name" : "Apple Iphone 12",
+        "p_category" : "Mobile",
+        "p_brand" : "Apple",
+        "p_price" : 78000,
+        "p_color" : [
+                "gold",
+                "silver",
+                "gray",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 6,
+                "front_camera" : 12,
+                "rear_camera" : 64,
+                "screen_size" : 15.49
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ecdb380c479ddaa2166d"),
+        "p_name" : "One Plus Nord",
+        "p_category" : "Mobile",
+        "p_brand" : "One Plus",
+        "p_price" : 28000,
+        "p_color" : [
+                "silver",
+                "blue",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 64,
+                "ram" : 6,
+                "front_camera" : 18,
+                "rear_camera" : 50,
+                "screen_size" : 14.4
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ed1e380c479ddaa2166e"),
+        "p_name" : "Apple Iphone 12 pro",
+        "p_category" : "Mobile",
+        "p_brand" : "Apple",
+        "p_price" : 98000,
+        "p_color" : [
+                "gold",
+                "silver",
+                "black"
+        ],
+        "p_rating" : 4,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 8,
+                "front_camera" : 24,
+                "rear_camera" : 108,
+                "screen_size" : 15.49
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ede5380c479ddaa21670"),
+        "p_name" : "Asus Zenbook 13",
+        "p_category" : "Laptop",
+        "p_brand" : "Asus",
+        "p_price" : 88000,
+        "p_color" : [
+                "gray",
+                "silver",
+                "blue"
+        ],
+        "p_rating" : 4.3,
+        "p_description" : {
+                "memory" : 512,
+                "ram" : 16,
+                "screen_size" : 33.78,
+                "processor" : "Intel Core i7"
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+> db.products.find({p_rating : {$not : {$gt : 4.5}}}, {_id : 0, p_name : 1, p_price : 1}).pretty()
+{ "p_name" : "Apple Iphone 12", "p_price" : 78000 }
+{ "p_name" : "One Plus Nord", "p_price" : 28000 }
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000 }
+{ "p_name" : "Asus Zenbook 13", "p_price" : 88000 }
+> db.products.find({p_rating : {$not : {$gt : 4.5}}}, {_id : 0, p_name : 1, p_price : 1, p_rating : 1}).pretty()
+{ "p_name" : "Apple Iphone 12", "p_price" : 78000, "p_rating" : 4.5 }
+{ "p_name" : "One Plus Nord", "p_price" : 28000, "p_rating" : 4.5 }
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000, "p_rating" : 4 }
+{ "p_name" : "Asus Zenbook 13", "p_price" : 88000, "p_rating" : 4.3 }
+> show collections
+customers
+products
+sales
+stores
+testCollection
+users
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("611600ea380c479ddaa21680"),
+        "name" : "John",
+        "age" : 40,
+        "hobbies" : [
+                "cricket",
+                "badminton"
+        ]
+}
+{
+        "_id" : ObjectId("611600ea380c479ddaa21681"),
+        "name" : "Shawn",
+        "age" : 25,
+        "hobbies" : [
+                "football",
+                "chess"
+        ]
+}
+{ "_id" : ObjectId("611600ea380c479ddaa21682"), "name" : "Tom", "age" : 30 }
+{
+        "_id" : ObjectId("61160119380c479ddaa21683"),
+        "name" : "Max",
+        "age" : "46"
+}
+{
+        "_id" : ObjectId("61160234380c479ddaa21684"),
+        "name" : "Ana",
+        "hobbies" : [
+                "badminton",
+                "chesss"
+        ],
+        "age" : null
+}
+{ "_id" : 101, "name" : "Tony", "age" : 37 }
+{
+        "_id" : ObjectId("611f296687cc4376ff1d7f61"),
+        "name" : "Maxwell",
+        "hobbies" : [
+                {
+                        "hobby" : "cricket",
+                        "fav_player" : "Virat"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("611f299a87cc4376ff1d7f62"),
+        "name" : "Ricky",
+        "hobbies" : [
+                {
+                        "hobby" : "cricket",
+                        "fav_player" : "Ricky"
+                },
+                {
+                        "hobby" : "badminton",
+                        "fav_player" : "PV"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("611f2b1b87cc4376ff1d7f63"),
+        "name" : "Mathew",
+        "hobbies" : [
+                "criket",
+                "hockey",
+                "football"
+        ]
+}
+{
+        "_id" : ObjectId("611f2bb687cc4376ff1d7f64"),
+        "name" : "Lucy",
+        "hobbies" : [
+                "chess",
+                "badminton"
+        ]
+}
+{
+        "_id" : ObjectId("611f2c5587cc4376ff1d7f65"),
+        "name" : "Alex",
+        "hobbies" : [
+                "badminton",
+                "chess"
+        ]
+}
+{
+        "_id" : ObjectId("611f2c5e87cc4376ff1d7f66"),
+        "name" : "Samuel",
+        "hobbies" : [
+                "badminton",
+                "chess"
+        ]
+}
+{
+        "_id" : ObjectId("611f2c6f87cc4376ff1d7f67"),
+        "name" : "Asha",
+        "hobbies" : [
+                "chess",
+                "badminton"
+        ]
+}
+> db.users.find({age : {$exists : true}}).pretty()
+{
+        "_id" : ObjectId("611600ea380c479ddaa21680"),
+        "name" : "John",
+        "age" : 40,
+        "hobbies" : [
+                "cricket",
+                "badminton"
+        ]
+}
+{
+        "_id" : ObjectId("611600ea380c479ddaa21681"),
+        "name" : "Shawn",
+        "age" : 25,
+        "hobbies" : [
+                "football",
+                "chess"
+        ]
+}
+{ "_id" : ObjectId("611600ea380c479ddaa21682"), "name" : "Tom", "age" : 30 }
+{
+        "_id" : ObjectId("61160119380c479ddaa21683"),
+        "name" : "Max",
+        "age" : "46"
+}
+{
+        "_id" : ObjectId("61160234380c479ddaa21684"),
+        "name" : "Ana",
+        "hobbies" : [
+                "badminton",
+                "chesss"
+        ],
+        "age" : null
+}
+{ "_id" : 101, "name" : "Tony", "age" : 37 }
+> db.users.find({age : {$exists : true, $ne : null}}).pretty()
+{
+        "_id" : ObjectId("611600ea380c479ddaa21680"),
+        "name" : "John",
+        "age" : 40,
+        "hobbies" : [
+                "cricket",
+                "badminton"
+        ]
+}
+{
+        "_id" : ObjectId("611600ea380c479ddaa21681"),
+        "name" : "Shawn",
+        "age" : 25,
+        "hobbies" : [
+                "football",
+                "chess"
+        ]
+}
+{ "_id" : ObjectId("611600ea380c479ddaa21682"), "name" : "Tom", "age" : 30 }
+{
+        "_id" : ObjectId("61160119380c479ddaa21683"),
+        "name" : "Max",
+        "age" : "46"
+}
+{ "_id" : 101, "name" : "Tony", "age" : 37 }
+> db.users.find({age : {$exists : true, $ne : null, $type:"number"}}).pretty()
+{
+        "_id" : ObjectId("611600ea380c479ddaa21680"),
+        "name" : "John",
+        "age" : 40,
+        "hobbies" : [
+                "cricket",
+                "badminton"
+        ]
+}
+{
+        "_id" : ObjectId("611600ea380c479ddaa21681"),
+        "name" : "Shawn",
+        "age" : 25,
+        "hobbies" : [
+                "football",
+                "chess"
+        ]
+}
+{ "_id" : ObjectId("611600ea380c479ddaa21682"), "name" : "Tom", "age" : 30 }
+{ "_id" : 101, "name" : "Tony", "age" : 37 }
+> show collections
+customers
+products
+sales
+stores
+testCollection
+users
+> db.customers.find().pretty()
+{
+        "_id" : ObjectId("6108dcb162894fed43c061ac"),
+        "name" : "Mac",
+        "age" : 45,
+        "email" : "mac12@gmail.com",
+        "mobile" : 8787898788
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061c9"),
+        "name" : "Max",
+        "age" : 45,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061ca"),
+        "name" : "Sam",
+        "age" : 31,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061cb"),
+        "name" : "Tom",
+        "age" : 26,
+        "address" : "pune"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061cc"),
+        "name" : "Nick",
+        "age" : 28,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061cd"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061ce"),
+        "name" : "Tony",
+        "age" : 20,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("610900be62894fed43c061cf"),
+        "name" : "Shawn",
+        "address" : [
+                "delhi",
+                "chennai",
+                "pune"
+        ]
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21671"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21672"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21673"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21674"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21675"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21676"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21677"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21678"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa21679"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa2167a"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa2167b"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa2167c"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+Type "it" for more
+> db.customers.find().pretty().count()
+23
+> it
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa2167d"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa2167e"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+{
+        "_id" : ObjectId("6115f0b9380c479ddaa2167f"),
+        "name" : "Mac",
+        "age" : 45,
+        "address" : "chennai"
+}
+> db.customers.find().pretty().toArray()
+[
+        {
+                "_id" : ObjectId("6108dcb162894fed43c061ac"),
+                "name" : "Mac",
+                "age" : 45,
+                "email" : "mac12@gmail.com",
+                "mobile" : 8787898788
+        },
+        {
+                "_id" : ObjectId("6108fee962894fed43c061c9"),
+                "name" : "Max",
+                "age" : 45,
+                "address" : "delhi"
+        },
+        {
+                "_id" : ObjectId("6108fee962894fed43c061ca"),
+                "name" : "Sam",
+                "age" : 31,
+                "address" : "delhi"
+        },
+        {
+                "_id" : ObjectId("6108fee962894fed43c061cb"),
+                "name" : "Tom",
+                "age" : 26,
+                "address" : "pune"
+        },
+        {
+                "_id" : ObjectId("6108ffdd62894fed43c061cc"),
+                "name" : "Nick",
+                "age" : 28,
+                "address" : "delhi"
+        },
+        {
+                "_id" : ObjectId("6108ffdd62894fed43c061cd"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6108ffdd62894fed43c061ce"),
+                "name" : "Tony",
+                "age" : 20,
+                "address" : "delhi"
+        },
+        {
+                "_id" : ObjectId("610900be62894fed43c061cf"),
+                "name" : "Shawn",
+                "address" : [
+                        "delhi",
+                        "chennai",
+                        "pune"
+                ]
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21671"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21672"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21673"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21674"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21675"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21676"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21677"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21678"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa21679"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa2167a"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa2167b"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa2167c"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa2167d"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa2167e"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        },
+        {
+                "_id" : ObjectId("6115f0b9380c479ddaa2167f"),
+                "name" : "Mac",
+                "age" : 45,
+                "address" : "chennai"
+        }
+]
+> db.customers.find({}, {_id:0, name:1}).forEach((document) => {printjson(document)})
+{ "name" : "Mac" }
+{ "name" : "Max" }
+{ "name" : "Sam" }
+{ "name" : "Tom" }
+{ "name" : "Nick" }
+{ "name" : "Mac" }
+{ "name" : "Tony" }
+{ "name" : "Shawn" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+{ "name" : "Mac" }
+> db.customers.deleteMany({name: "Mac"})
+{ "acknowledged" : true, "deletedCount" : 17 }
+> db.customers.find().pretty().toArray()
+[
+        {
+                "_id" : ObjectId("6108fee962894fed43c061c9"),
+                "name" : "Max",
+                "age" : 45,
+                "address" : "delhi"
+        },
+        {
+                "_id" : ObjectId("6108fee962894fed43c061ca"),
+                "name" : "Sam",
+                "age" : 31,
+                "address" : "delhi"
+        },
+        {
+                "_id" : ObjectId("6108fee962894fed43c061cb"),
+                "name" : "Tom",
+                "age" : 26,
+                "address" : "pune"
+        },
+        {
+                "_id" : ObjectId("6108ffdd62894fed43c061cc"),
+                "name" : "Nick",
+                "age" : 28,
+                "address" : "delhi"
+        },
+        {
+                "_id" : ObjectId("6108ffdd62894fed43c061ce"),
+                "name" : "Tony",
+                "age" : 20,
+                "address" : "delhi"
+        },
+        {
+                "_id" : ObjectId("610900be62894fed43c061cf"),
+                "name" : "Shawn",
+                "address" : [
+                        "delhi",
+                        "chennai",
+                        "pune"
+                ]
+        }
+]
+> db.customers.find().pretty()
+{
+        "_id" : ObjectId("6108fee962894fed43c061c9"),
+        "name" : "Max",
+        "age" : 45,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061ca"),
+        "name" : "Sam",
+        "age" : 31,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061cb"),
+        "name" : "Tom",
+        "age" : 26,
+        "address" : "pune"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061cc"),
+        "name" : "Nick",
+        "age" : 28,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061ce"),
+        "name" : "Tony",
+        "age" : 20,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("610900be62894fed43c061cf"),
+        "name" : "Shawn",
+        "address" : [
+                "delhi",
+                "chennai",
+                "pune"
+        ]
+}
+> db.customers.deleteOne({name: "Shawn"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.customers.find().pretty()
+{
+        "_id" : ObjectId("6108fee962894fed43c061c9"),
+        "name" : "Max",
+        "age" : 45,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061ca"),
+        "name" : "Sam",
+        "age" : 31,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061cb"),
+        "name" : "Tom",
+        "age" : 26,
+        "address" : "pune"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061cc"),
+        "name" : "Nick",
+        "age" : 28,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061ce"),
+        "name" : "Tony",
+        "age" : 20,
+        "address" : "delhi"
+}
+> db.customers.updateOne({name : "Tony", {$set : {age : 25}})
+... )
+uncaught exception: SyntaxError: expected property name, got '{' :
+@(shell):1:39
+> db.customers.updateOne({name : "Tony"}, {$set : {age : 25})
+... )
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:58
+> db.customers.updateOne({name : "Tony"}, {$set : {age : 25}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.customers.find().pretty()
+{
+        "_id" : ObjectId("6108fee962894fed43c061c9"),
+        "name" : "Max",
+        "age" : 45,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061ca"),
+        "name" : "Sam",
+        "age" : 31,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108fee962894fed43c061cb"),
+        "name" : "Tom",
+        "age" : 26,
+        "address" : "pune"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061cc"),
+        "name" : "Nick",
+        "age" : 28,
+        "address" : "delhi"
+}
+{
+        "_id" : ObjectId("6108ffdd62894fed43c061ce"),
+        "name" : "Tony",
+        "age" : 25,
+        "address" : "delhi"
+}
+> db.products.find({p_name : {$regex : /Iphone/}}, {_id: 0, p_name:1}).pretty()
+{ "p_name" : "Apple Iphone 12" }
+{ "p_name" : "Apple Iphone 12 pro" }
+> db.products.find({p_name : {$regex : /iphone/}}, {_id: 0, p_name:1}).pretty()
+> db.products.find({p_name : {$regex : /iphone/, $options:"$i"}}, {_id: 0, p_name:1}).pretty()
+{ "p_name" : "Apple Iphone 12" }
+{ "p_name" : "Apple Iphone 12 pro" }
+> db.products.find({p_name : {$regex : "iphone", $options:"$i"}}, {_id: 0, p_name:1}).pretty()
+{ "p_name" : "Apple Iphone 12" }
+{ "p_name" : "Apple Iphone 12 pro" }
+> db.products.find({p_name : {$regex : "^iphone", $options:"$i"}}, {_id: 0, p_name:1}).pretty()
+> db.products.find({p_name : {$regex : "^apple", $options:"$i"}}, {_id: 0, p_name:1}).pretty()
+{ "p_name" : "Apple Iphone 12" }
+{ "p_name" : "Apple Iphone 12 pro" }
+{ "p_name" : "Apple Macbook Pro M1" }
+> db.products.find({p_name : {$regex : "11$", $options:"$i"}}, {_id: 0, p_name:1}).pretty()
+> db.products.find({p_name : {$regex : "12$", $options:"$i"}}, {_id: 0, p_name:1}).pretty()
+{ "p_name" : "Apple Iphone 12" }
+> db.customers.find({}, {_id:0, p_name:1, p_price:1}).sort().pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "Failed to parse: sort: undefined. 'sort' field must be of BSON type object.",
+        "code" : 9,
+        "codeName" : "FailedToParse"
+}
+> db.customers.find({}, {_id:0, p_name:1, p_price:1}).sort({p_price : 1}).pretty()
+{ }
+{ }
+{ }
+{ }
+{ }
+> db.products.find({}, {_id:0, p_name:1, p_price:1}).sort({p_price : 1}).pretty()
+{ "p_name" : "One Plus Nord", "p_price" : 28000 }
+{ "p_name" : "Apple Iphone 12", "p_price" : 78000 }
+{ "p_name" : "Asus Zenbook 13", "p_price" : 88000 }
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000 }
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000 }
+> db.products.find({}, {_id:0, p_name:1, p_price:1}).sort({p_price : -1}).pretty()
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000 }
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000 }
+{ "p_name" : "Asus Zenbook 13", "p_price" : 88000 }
+{ "p_name" : "Apple Iphone 12", "p_price" : 78000 }
+{ "p_name" : "One Plus Nord", "p_price" : 28000 }
+> db.products.find({}, {_id:0, p_name:1, p_price:1}).sort({p_price : -1}).limit(3).pretty()
+{ "p_name" : "Apple Macbook Pro M1", "p_price" : 158000 }
+{ "p_name" : "Apple Iphone 12 pro", "p_price" : 98000 }
+{ "p_name" : "Asus Zenbook 13", "p_price" : 88000 }
+> db.products.aggregate([{$match : {p_rating : 4.5}}])
+{ "_id" : ObjectId("6115ec83380c479ddaa2166c"), "p_name" : "Apple Iphone 12", "p_category" : "Mobile", "p_brand" : "Apple", "p_price" : 78000, "p_color" : [ "gold", "silver", "gray", "black" ], "p_rating" : 4.5, "p_description" : { "memory" : 128, "ram" : 6, "front_camera" : 12, "rear_camera" : 64, "screen_size" : 15.49 }, "products_available" : 10, "super_category" : "Electronics" }
+{ "_id" : ObjectId("6115ecdb380c479ddaa2166d"), "p_name" : "One Plus Nord", "p_category" : "Mobile", "p_brand" : "One Plus", "p_price" : 28000, "p_color" : [ "silver", "blue", "black" ], "p_rating" : 4.5, "p_description" : { "memory" : 64, "ram" : 6, "front_camera" : 18, "rear_camera" : 50, "screen_size" : 14.4 }, "products_available" : 10, "super_category" : "Electronics" }
+> db.products.aggregate([{$match : {p_rating : 4.5}}]).pretty()
+{
+        "_id" : ObjectId("6115ec83380c479ddaa2166c"),
+        "p_name" : "Apple Iphone 12",
+        "p_category" : "Mobile",
+        "p_brand" : "Apple",
+        "p_price" : 78000,
+        "p_color" : [
+                "gold",
+                "silver",
+                "gray",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 6,
+                "front_camera" : 12,
+                "rear_camera" : 64,
+                "screen_size" : 15.49
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ecdb380c479ddaa2166d"),
+        "p_name" : "One Plus Nord",
+        "p_category" : "Mobile",
+        "p_brand" : "One Plus",
+        "p_price" : 28000,
+        "p_color" : [
+                "silver",
+                "blue",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 64,
+                "ram" : 6,
+                "front_camera" : 18,
+                "rear_camera" : 50,
+                "screen_size" : 14.4
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+> db.products.aggregate([{$group : {_id : "$p_brand", total : {$sum : "$p_price"}}}]).pretty()
+{ "_id" : "Asus", "total" : 88000 }
+{ "_id" : "One Plus", "total" : 28000 }
+{ "_id" : "Apple", "total" : 334000 }
+> db.products.aggregate([{$group : {_id : "$p_brand", total : {$sum : "$products_available"}}}]).pretty()
+{ "_id" : "Apple", "total" : 30 }
+{ "_id" : "Asus", "total" : 10 }
+{ "_id" : "One Plus", "total" : 10 }
+> db.products.aggregate([{$match : {p_brand : "Apple"}}, {$group : {_id : "$p_category"}}]).pretty()
+{ "_id" : "Mobile" }
+{ "_id" : "Laptop" }
+> db.products.aggregate([{$match : {p_brand : "Apple"}}, {$group : {_id : "$p_category", total : {$sum : "$products_available"}}}]).pretty()
+{ "_id" : "Laptop", "total" : 10 }
+{ "_id" : "Mobile", "total" : 20 }
+> show dbs
+Flipkart      0.000GB
+TCS           0.000GB
+admin         0.000GB
+amazon_db     0.000GB
+config        0.000GB
+covid_db      0.000GB
+dataTypes_db  0.000GB
+db_1          0.000GB
+emp_db        0.000GB
+local         0.000GB
+movies_db     0.000GB
+netflix       0.000GB
+new_db        0.000GB
+shopping      0.000GB
+testDB        0.000GB
+> use covid_db
+switched to db covid_db
+> show collections
+summary
+totalCases
+> db.summary.find().count()
+192
+> use shopping
+switched to db shopping
+> show collections
+customers
+products
+sales
+stores
+testCollection
+users
+> db.products.aggregate([{$sort : {p_price : 1}}]).pretty()
+{
+        "_id" : ObjectId("6115ecdb380c479ddaa2166d"),
+        "p_name" : "One Plus Nord",
+        "p_category" : "Mobile",
+        "p_brand" : "One Plus",
+        "p_price" : 28000,
+        "p_color" : [
+                "silver",
+                "blue",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 64,
+                "ram" : 6,
+                "front_camera" : 18,
+                "rear_camera" : 50,
+                "screen_size" : 14.4
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ec83380c479ddaa2166c"),
+        "p_name" : "Apple Iphone 12",
+        "p_category" : "Mobile",
+        "p_brand" : "Apple",
+        "p_price" : 78000,
+        "p_color" : [
+                "gold",
+                "silver",
+                "gray",
+                "black"
+        ],
+        "p_rating" : 4.5,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 6,
+                "front_camera" : 12,
+                "rear_camera" : 64,
+                "screen_size" : 15.49
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ede5380c479ddaa21670"),
+        "p_name" : "Asus Zenbook 13",
+        "p_category" : "Laptop",
+        "p_brand" : "Asus",
+        "p_price" : 88000,
+        "p_color" : [
+                "gray",
+                "silver",
+                "blue"
+        ],
+        "p_rating" : 4.3,
+        "p_description" : {
+                "memory" : 512,
+                "ram" : 16,
+                "screen_size" : 33.78,
+                "processor" : "Intel Core i7"
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ed1e380c479ddaa2166e"),
+        "p_name" : "Apple Iphone 12 pro",
+        "p_category" : "Mobile",
+        "p_brand" : "Apple",
+        "p_price" : 98000,
+        "p_color" : [
+                "gold",
+                "silver",
+                "black"
+        ],
+        "p_rating" : 4,
+        "p_description" : {
+                "memory" : 128,
+                "ram" : 8,
+                "front_camera" : 24,
+                "rear_camera" : 108,
+                "screen_size" : 15.49
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+{
+        "_id" : ObjectId("6115ed8f380c479ddaa2166f"),
+        "p_name" : "Apple Macbook Pro M1",
+        "p_category" : "Laptop",
+        "p_brand" : "Apple",
+        "p_price" : 158000,
+        "p_color" : [
+                "gray",
+                "silver"
+        ],
+        "p_rating" : 4.8,
+        "p_description" : {
+                "memory" : 256,
+                "ram" : 8,
+                "screen_size" : 33.78,
+                "processor" : "Mac M1"
+        },
+        "products_available" : 10,
+        "super_category" : "Electronics"
+}
+> use covid_db
+switched to db covid_db
+> show collections
+summary
+totalCases
+> db.summary.find().count()
+192
+> db.summary.findOne()
+{
+        "_id" : ObjectId("612883d411f6aa93436c003c"),
+        "ID" : "f557f3b8-a921-4022-89a2-77d48ef8ceab",
+        "Country" : "Afghanistan",
+        "CountryCode" : "AF",
+        "Slug" : "afghanistan",
+        "NewConfirmed" : 100,
+        "TotalConfirmed" : 152822,
+        "NewDeaths" : 3,
+        "TotalDeaths" : 7093,
+        "NewRecovered" : 0,
+        "TotalRecovered" : 0,
+        "Date" : "2021-08-27T02:37:34.029Z",
+        "Premium" : {
+
+        }
+}
+> db.summary.find({}, {Country : 1, TotalConfirmed : 1, _id:0}).limit(10)
+{ "Country" : "Afghanistan", "TotalConfirmed" : 152822 }
+{ "Country" : "Algeria", "TotalConfirmed" : 193171 }
+{ "Country" : "Angola", "TotalConfirmed" : 46726 }
+{ "Country" : "Antigua and Barbuda", "TotalConfirmed" : 1598 }
+{ "Country" : "Argentina", "TotalConfirmed" : 5161926 }
+{ "Country" : "Armenia", "TotalConfirmed" : 239739 }
+{ "Country" : "Australia", "TotalConfirmed" : 47840 }
+{ "Country" : "Albania", "TotalConfirmed" : 142253 }
+{ "Country" : "Andorra", "TotalConfirmed" : 15016 }
+{ "Country" : "Austria", "TotalConfirmed" : 681617 }
+> db.summary.find({}, {Country : 1, TotalConfirmed : 1, _id:0}).skip(10).limit(10)
+{ "Country" : "Bangladesh", "TotalConfirmed" : 1482628 }
+{ "Country" : "Bahrain", "TotalConfirmed" : 272042 }
+{ "Country" : "Barbados", "TotalConfirmed" : 4720 }
+{ "Country" : "Belarus", "TotalConfirmed" : 474403 }
+{ "Country" : "Belgium", "TotalConfirmed" : 1173108 }
+{ "Country" : "Belize", "TotalConfirmed" : 15793 }
+{ "Country" : "Benin", "TotalConfirmed" : 12492 }
+{ "Country" : "Azerbaijan", "TotalConfirmed" : 405542 }
+{ "Country" : "Bolivia", "TotalConfirmed" : 488403 }
+{ "Country" : "Bahamas", "TotalConfirmed" : 17717 }
+> show dbs
+Flipkart      0.000GB
+TCS           0.000GB
+admin         0.000GB
+amazon_db     0.000GB
+config        0.000GB
+covid_db      0.000GB
+dataTypes_db  0.000GB
+db_1          0.000GB
+emp_db        0.000GB
+local         0.000GB
+movies_db     0.000GB
+netflix       0.000GB
+new_db        0.000GB
+shopping      0.000GB
+testDB        0.000GB
+> use emp_db
+switched to db emp_db
+> show collections
+empDetails
+employees
+> db.employees.find()
+{ "_id" : ObjectId("611790d6c63bbea49bb840c3"), "name" : "Ram", "sal" : 45000 }
+{ "_id" : ObjectId("611790d6c63bbea49bb840c4"), "name" : "Shyam", "sal" : 30000 }
+{ "_id" : ObjectId("611790d6c63bbea49bb840c5"), "name" : "Mohan", "sal" : 50000 }
+{ "_id" : ObjectId("611f495787cc4376ff1d7f8b"), "name" : "Ram", "sal" : 88000 }
+> db.empDetails.find()
+{ "_id" : ObjectId("61179114c63bbea49bb840c6"), "name" : "Ram", "age" : 40, "ph_no" : 878777898 }
+{ "_id" : ObjectId("61179114c63bbea49bb840c7"), "name" : "Shyam", "age" : 34, "ph_no" : 9799000989 }
+> db.employees.aggregate([{$lookup : {from : "empDetails", localField : "name" foreignField : "name", as : "details"}}]).pretty()
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:77
+> db.employees.aggregate([{$lookup : {from : "empDetails", localField : "name", foreignField : "name", as : "details"}}]).pretty()
+{
+        "_id" : ObjectId("611790d6c63bbea49bb840c3"),
+        "name" : "Ram",
+        "sal" : 45000,
+        "details" : [
+                {
+                        "_id" : ObjectId("61179114c63bbea49bb840c6"),
+                        "name" : "Ram",
+                        "age" : 40,
+                        "ph_no" : 878777898
+                }
+        ]
+}
+{
+        "_id" : ObjectId("611790d6c63bbea49bb840c4"),
+        "name" : "Shyam",
+        "sal" : 30000,
+        "details" : [
+                {
+                        "_id" : ObjectId("61179114c63bbea49bb840c7"),
+                        "name" : "Shyam",
+                        "age" : 34,
+                        "ph_no" : 9799000989
+                }
+        ]
+}
+{
+        "_id" : ObjectId("611790d6c63bbea49bb840c5"),
+        "name" : "Mohan",
+        "sal" : 50000,
+        "details" : [ ]
+}
+{
+        "_id" : ObjectId("611f495787cc4376ff1d7f8b"),
+        "name" : "Ram",
+        "sal" : 88000,
+        "details" : [
+                {
+                        "_id" : ObjectId("61179114c63bbea49bb840c6"),
+                        "name" : "Ram",
+                        "age" : 40,
+                        "ph_no" : 878777898
+                }
+        ]
+}
+> db.employees.find().forEach(function(x) {db.getSiblingDB("new_db")["collection_copy"].insert(x)})
+> use new_db
+switched to db new_db
+> show collections
+collection_copy
+new_collection
+> db.collection_copy.find()
+{ "_id" : ObjectId("611790d6c63bbea49bb840c3"), "name" : "Ram", "sal" : 45000 }
+{ "_id" : ObjectId("611790d6c63bbea49bb840c4"), "name" : "Shyam", "sal" : 30000 }
+{ "_id" : ObjectId("611790d6c63bbea49bb840c5"), "name" : "Mohan", "sal" : 50000 }
+{ "_id" : ObjectId("611f495787cc4376ff1d7f8b"), "name" : "Ram", "sal" : 88000 }
+>
